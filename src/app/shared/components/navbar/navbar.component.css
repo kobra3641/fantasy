@@ -1,0 +1,109 @@
+.navbar {
+  padding: .5rem 1rem;
+  display: grid;
+  grid-template-areas: 'logo . regions . shops . catalog . searchbar . auth . basket';
+  grid-template-columns: auto 40px auto 24px auto 40px auto 24px 1fr 40px auto 24px auto;
+  grid-template-rows: auto;
+}
+.menuButton {
+  cursor: pointer;
+}
+input {
+  all: unset;
+  color: #b0b0b0;
+  background: #f0f1f2;
+  padding: 10px 15px;
+  border-radius: 5px;
+}
+.regions {
+  grid-area: regions;
+  display: flex;
+}
+.shops {
+  grid-area: shops;
+}
+.catalog {
+  grid-area: catalog;
+}
+.searchbar {
+  grid-area: searchbar;
+}
+.auth {
+  grid-area: auth;
+}
+.basket {
+  grid-area: basket;
+}
+.menuButton {
+  grid-area: menuButton;
+  display: none;
+}
+
+
+@media(max-width: 1024px) {
+  .navbar {
+    grid-template-areas: 'menuButton logo basket'
+    'searchbar searchbar searchbar';
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto auto;
+    grid-row-gap: .5rem;
+    padding: .5rem 1rem;
+  }
+  .logo {
+    justify-content: center;
+  }
+  .menuButton {
+    display: block;
+  }
+
+  .regions {
+    display: none;
+  }
+  .shops {
+    display: none;
+  }
+  .catalog {
+    display: none;
+  }
+  .auth {
+    display: none;
+  }
+  .basket {
+    margin-left: auto;
+  }
+
+}
+
+::ng-deep .mat-drawer-inner-container {
+  display: grid;
+}
+
+mat-drawer-container {
+  background: white;
+  height: 100vh;
+}
+
+::ng-deep .mat-drawer {
+  padding: 10px 20px;
+}
+::ng-deep .mat-drawer mat-icon {
+  margin-left: auto;
+  cursor: pointer;
+}
+::ng-deep .mat-drawer a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 20px 30px;
+}
+/*::ng-deep .mat-drawer a:hover {*/
+/*  color: indianred!important;*/
+/*}*/
+::ng-deep .mat-drawer a mat-icon {
+  margin: 0px;
+}
+
+/*::ng-deep .mat-drawer-transition .mat-drawer-backdrop {*/
+/*  background: #0009;*/
+/*  visibility: visible;*/
+/*}*/

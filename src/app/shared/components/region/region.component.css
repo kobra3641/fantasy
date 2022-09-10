@@ -1,0 +1,57 @@
+p, h1, h2, h3, h4, h5 {
+  margin: 0;
+}
+a {
+  color: black;
+  cursor: pointer;
+  text-decoration: none;
+}
+.close-button {
+  cursor: pointer;
+}
+.logo {
+  height: 50px;
+  align-items: center;
+  display: flex;
+  font-weight: bold;
+  font-size: 18px;
+  cursor: default;
+  text-decoration: none;
+  color: black;
+}
+.navbar {
+  padding: 1rem 1rem;
+}
+::ng-deep .mat-dialog-container {
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
+}
+::ng-deep .cdk-overlay-dark-backdrop {
+  background: transparent;
+  transition: none;
+  animation: none;
+}
+.title {
+  margin: 1.5rem 0!important;
+  width: max-content;
+}
+input {
+  all: unset;
+  color: #b0b0b0;
+  background: #f0f1f2;
+  padding: 15px 20px;
+  border-radius: 5px;
+  transition: all .3s;
+}
+input:focus {
+  background: white;
+  box-shadow: 0 4px 20px rgba(72, 78, 92, .15);
+}
+.region-name {
+  padding: 0!important;
+  margin-bottom: 15px
+}
+.region-name:hover {
+  color: indianred;
+}

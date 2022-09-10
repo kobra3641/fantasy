@@ -1,0 +1,159 @@
+p, h1, h2, h3, h4, h5 {
+  margin: 0;
+}
+a {
+  color: black;
+  cursor: pointer;
+  text-decoration: none;
+}
+.close-button {
+  cursor: pointer;
+  grid-area: close;
+}
+.logo {
+  height: 50px;
+  align-items: center;
+  display: flex;
+  font-weight: bold;
+  font-size: 18px;
+  cursor: default;
+  text-decoration: none;
+  color: black;
+}
+.navbar {
+  padding: 1rem 1rem;
+}
+::ng-deep .mat-dialog-container {
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
+}
+::ng-deep .cdk-overlay-dark-backdrop {
+  background: transparent;
+  transition: none;
+  animation: none;
+}
+.title {
+  margin: 1.5rem 0!important;
+  width: max-content;
+}
+input {
+  all: unset;
+  color: #b0b0b0;
+  background: #f0f1f2;
+  padding: 10px 15px;
+  border-radius: 5px;
+
+}
+input:focus {
+  background: white;
+  box-shadow: 0 4px 20px rgba(72, 78, 92, .15);
+}
+input:after {
+  content: '123';
+}
+
+.logo {
+  height: 50px;
+  align-items: center;
+  display: flex;
+  font-weight: bold;
+  font-size: 18px;
+  cursor: default;
+  text-decoration: none;
+  color: black;
+  grid-area: logo;
+}
+.navbar {
+  padding: 1rem 1rem;
+  display: grid;
+  grid-template-areas: "logo . searchbar . close"
+                       ". . searchfield . .";
+  grid-template-columns: auto 75px 1fr 75px auto;
+  grid-template-rows: auto auto;
+  grid-row-gap: 1.5rem;
+  /*gap: 75px;*/
+  animation: navInput .5s;
+}
+a {
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
+}
+
+@keyframes navInput {
+  0% {
+    grid-template-columns: auto 403px 1fr 170px auto;
+  }
+  100% {
+    grid-template-columns: auto 75px 1fr 75px auto;
+  }
+}
+
+
+.searchField {
+  grid-area: searchfield;
+  animation: searchField .5s forwards;
+  animation-delay: .5s;
+  opacity: 0;
+
+  display: grid;
+  grid-template-rows: auto auto;
+  grid-template-columns: 10% auto;
+}
+
+@keyframes searchField {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 100;
+  }
+}
+
+
+.searchFieldElement {
+  /*color: #b0b0b0;*/
+  /*background: #f0f1f2;*/
+  padding: 10px 15px;
+  border-radius: 5px;
+}
+.searchFieldElement:hover {
+  background: #f0f1f2;
+}
+.searchbar {
+  grid-area: searchbar;
+}
+
+@media(max-width: 1024px) {
+  .navbar {
+    grid-template-areas: '. logo close'
+                          'searchbar searchbar searchbar'
+                          'searchfield searchfield searchfield ';
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, auto);
+    grid-row-gap: 5px;
+    animation: none;
+  }
+  .searchField {
+    margin-top: 10px;
+    animation-delay: .2s;
+  }
+  .logo {
+    justify-content: center;
+  }
+  .close-button {
+    right: 0;
+    position: absolute;
+  }
+}
+
+/*padding: 1rem 1rem;*/
+/*display: grid;*/
+/*grid-template-areas: "logo . searchbar . close"*/
+/*". . searchfield . .";*/
+/*grid-template-columns: auto 75px 1fr 75px auto;*/
+/*grid-template-rows: auto auto;*/
+/*grid-row-gap: 1.5rem;*/
+/*!*gap: 75px;*!*/
+/*animation: navInput .5s;*/

@@ -1,0 +1,287 @@
+.title {
+  margin: 1.5rem 0!important;
+  grid-area: title;
+}
+main {
+  display: grid;
+  grid-template-columns: 20% 80%;
+  grid-template-rows: repeat(3, auto);
+  grid-template-areas: 'title title'
+  'filter filter'
+  'options goods';
+}
+.options {
+  grid-area: options;
+  display: flex;
+  flex-direction: column;
+}
+.goods {
+  grid-area: goods;
+}
+.options-block {
+  margin: 0 0 30px 0;
+}
+.options-block a {
+  cursor: pointer;
+  font-size: 14px;
+}
+.options-block-title {
+  color: #7E7E7E;
+  margin-bottom: 10px;
+}
+.options-block mat-checkbox {
+  font-size: 14px;
+}
+.filter-search {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+}
+.filter-search p {
+  font-size: 14px;
+}
+::ng-deep .mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
+  line-height: 36px;
+}
+::ng-deep .mat-button-toggle-button {
+  width: 100%!important;
+  height: 36px!important;
+}
+::ng-deep .mat-button-toggle-label-content {
+  display: flex!important;
+}
+svg {
+  width: 10px;
+  height: 10px;
+}
+.good {
+  display: grid;
+  grid-template-columns: 160px repeat(2, 1fr);
+  grid-template-rows: auto;
+  height: 200px;
+  padding: 20px;
+  grid-template-areas: 'img firstElement secondElement';
+}
+.good img {
+  margin: 15px auto;
+  width: 100%;
+}
+.good hr {
+  display: none;
+}
+.largeCard .good hr {
+  margin: 0;
+  border-color: #EEEEEE;
+  display: block;
+}
+.largeCard {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto;
+}
+.largeCard .good {
+  grid-template-columns: auto;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+.largeCard .good img {
+  width: 200px;
+  height: 200px;
+}
+.largeCard .good p {
+  margin: 0;
+  padding: 0px 25px;
+}
+.largeCard .good p:nth-child(3) {
+  padding: 15px 25px;
+  font-size: 18px;
+  grid-area: firstElement;
+}
+.largeCard .good p:nth-child(4) {
+  color: #7E7E7E;
+  grid-area: secondElement;
+}
+.good p:nth-child(3) {
+  margin-left: 20px;
+  grid-area: secondElement;
+}
+.good p:nth-child(4) {
+  margin-left: 70px;
+  grid-area: firstElement;
+}
+::ng-deep .ngx-pagination .disabled {
+  display: none!important;
+}
+::ng-deep .ngx-pagination li.small-screen {
+  display: none!important;
+}
+::ng-deep .ngx-pagination li {
+  width: 40px!important;
+  height: 40px!important;
+  border-radius: 40px!important;
+  border: 1px solid lightgray!important;
+  color: black!important;
+  padding: 0!important;
+  display: inline-flex!important;
+  justify-content: center!important;
+  align-items: center!important;
+  margin-right: 12px!important;
+}
+::ng-deep .ngx-pagination li a{
+  background: transparent!important;
+  text-decoration: none!important;
+}
+::ng-deep .ngx-pagination .current {
+  background: transparent!important;
+  border: 1px solid gray!important;
+}
+::ng-deep .ngx-pagination {
+  padding: 0!important;
+  display: flex!important;
+}
+::ng-deep .pagination-previous, ::ng-deep .pagination-next {
+  background: #e0e0e0!important;
+}
+::ng-deep .pagination-next a, ::ng-deep .pagination-previous a  {
+  display: flex!important;
+  padding: 0!important;
+  font-size: 24px!important;
+}
+::ng-deep .pagination-next a:after {
+  font-family: "Material Icons"!important;
+  content: '\e5cc'!important;
+  margin: 0!important;
+}
+::ng-deep .pagination-previous a:before {
+  font-family: "Material Icons"!important;
+  content: '\e5cb'!important;
+  margin: 0!important;
+}
+.openFilter ::ng-deep .mat-button-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+::ng-deep .mat-checkbox-layout {
+  white-space: normal !important;
+}
+.show {
+  display: block;
+}
+.hidden {
+  display: none;
+}
+.filter-element {
+  height: 80px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px 0px rgba(34, 60, 80, 0.1);
+  padding: 12px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  cursor: pointer;
+  text-align: center;
+  width: calc(20% - 15px);
+}
+.filter-element p {
+  font-size: 14px;
+}
+.filter-button {
+  display: none;
+  grid-area: filtres;
+}
+.goodsValue {
+  margin-right: auto;
+  grid-area: goodsValue;
+}
+.filter {
+  grid-area: filter;
+  gap: 15px;
+}
+@media(max-width: 1200px) {
+  .filter-element img {
+    display: none;
+  }
+  .filter-element p {
+    display: block;
+  }
+  main {
+    grid-template-columns: 100%;
+    grid-template-rows: repeat(3, auto);
+    grid-template-areas: 'title'
+    'filter'
+    'goods';
+  }
+  .options {
+    display: none;
+  }
+  .filter-button {
+    display: block;
+  }
+}
+@media(max-width: 768px) {
+  .filter-element img {
+    display: block;
+  }
+  .filter-element p {
+    display: none;
+  }
+  .largeCard {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media(max-width: 576px) {
+  .largeCard {
+    grid-template-columns: 1fr;
+  }
+  .filter {
+    gap: 0;
+  }
+  .toggleGroup {
+    display: none;
+  }
+  .filter-search {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    grid-template-rows: repeat(2, auto);
+    grid-template-areas: 'filtres sort'
+    'goodsValue .';
+    gap: 5px;
+    text-align: center;
+  }
+  .goodsValue {
+    margin: 0;
+  }
+  .filter-element {
+    width: max-content;
+    height: max-content;
+    padding: 10px;
+  }
+  .filter-element img {
+    width: 44px;
+  }
+}
+mat-chip {
+  cursor: pointer;
+}
+.matChip {
+  color: white;
+  background: #464c5c;
+}
+.matChip mat-icon {
+  color: white;
+}
+.matChipClear {
+  color: black;
+  background: transparent;
+  border: 2px solid #ced0d6;
+}
+.matChipClear:hover {
+  background: transparent;
+}
+.matChips {
+  grid-area: matChips;
+}

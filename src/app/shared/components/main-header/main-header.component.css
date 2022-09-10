@@ -1,0 +1,90 @@
+.logo {
+  height: 50px;
+  align-items: center;
+  display: flex;
+  font-weight: bold;
+  font-size: 18px;
+  cursor: default;
+  text-decoration: none;
+  color: black;
+  grid-area: logo;
+}
+.navbar {
+  padding: 1rem 1rem;
+  display: grid;
+  grid-template-areas: 'logo . regions . shops . catalog . searchbar . auth . basket';
+  grid-template-columns: auto 40px auto 24px auto 40px auto 24px 1fr 40px auto 24px auto;
+  grid-template-rows: auto;
+}
+a {
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
+}
+input {
+  all: unset;
+  color: #b0b0b0;
+  background: #f0f1f2;
+  padding: 10px 15px;
+  border-radius: 5px;
+}
+
+.regions {
+  grid-area: regions;
+  display: flex;
+}
+.shopLink {
+  grid-area: shops;
+}
+.catalog {
+  grid-area: catalog;
+}
+.searchbar {
+  grid-area: searchbar;
+}
+.auth {
+  grid-area: auth;
+}
+.basket {
+  grid-area: basket;
+}
+.menuButton {
+  grid-area: menuButton;
+  display: none;
+}
+
+
+@media(max-width: 1024px) {
+  .navbar {
+    grid-template-areas: 'menuButton logo basket'
+    'searchbar searchbar searchbar';
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto auto;
+    grid-row-gap: .5rem;
+    padding: .5rem 1rem;
+  }
+  .logo {
+    justify-content: center;
+  }
+  .menuButton {
+    display: block;
+  }
+
+  .regions {
+    display: none;
+  }
+  .shopLink {
+    display: none;
+  }
+  .catalog {
+    display: none;
+  }
+  .auth {
+    display: none;
+  }
+  .basket {
+    text-align: right;
+  }
+
+}
+

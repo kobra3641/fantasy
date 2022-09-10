@@ -1,0 +1,54 @@
+<main class="container">
+  <h2 class="title">
+    {{'Магазины'}}
+  </h2>
+  <div class="shops"
+       style="border-radius: 5px">
+    <div class="shop-list-first">
+      <div>
+        <p class="bigNumber">
+          {{totalShops.length}}
+        </p>
+        <p class="smallTextUnderNumber">
+          {{declOfNum(totalShops.length, ['магазин', 'магазина', 'магазинов'])}}
+        </p>
+      </div>
+      <p class="smallLetter"><span>-</span> в <span>-</span></p>
+      <div>
+        <p class="bigNumber">
+          {{allRegions}}
+        </p>
+        <p class="smallTextUnderNumber">
+          {{declOfNum(allRegions, ['городе', 'городах', 'городах'])}} России
+        </p>
+      </div>
+    </div>
+    <div class="shop-list-second">
+      <div class="region-text">
+        <mat-icon>location_on</mat-icon>
+        <p>
+          {{'Ваш регион: '}}
+        </p>
+      </div>
+      <a>
+        {{region.rus_name}}
+      </a>
+      <p style="font-size: 24px">
+        {{currentRegionShops.length + ' ' + declOfNum(currentRegionShops.length, ['магазин', 'магазина', 'магазинов'])}}
+      </p>
+    </div>
+    <div class="shopList">
+      <div class="shop-list-element"
+           *ngFor="let shop of currentRegionShops">
+        <p class="shop-element-title">{{shop?.about?.title}}</p>
+        <p class="shop-element-address">{{shop?.about?.address}}</p>
+        <p class="shop-element-openTime">
+          <mat-icon>access_time</mat-icon>
+          {{shop?.about?.openTime[0] + '-' + shop?.about?.openTime[1]}}
+        </p>
+      </div>
+    </div>
+    <div id="map" style="padding: 0; grid-area: map"></div>
+  </div>
+
+</main>

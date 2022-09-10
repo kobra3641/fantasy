@@ -1,0 +1,34 @@
+<header class="navbar container">
+  <mat-icon class="menuButton">
+    menu
+  </mat-icon>
+  <a class="logo"
+     href="./">
+    FANTASY
+  </a>
+  <a class="regions"
+     (click)="openRegionDialog()">
+    {{region.rus_name}}
+    <mat-icon>
+      keyboard_arrow_down
+    </mat-icon>
+  </a>
+  <a class="shopLink"
+     [routerLink]="['shop']">
+    Магазины
+  </a>
+  <a class="catalog"
+     *ngIf="router.url != '/'"
+     (click)="openCatalogueDialog()">
+    Каталог
+  </a>
+  <input class="searchbar" type="submit" value="Поиск товаров"
+         *ngIf="router.url != '/'"
+         (click)="openSearchBarDialog()">
+  <a class="auth">
+    Профиль
+  </a>
+  <a class="basket">
+    Корзина
+  </a>
+</header>

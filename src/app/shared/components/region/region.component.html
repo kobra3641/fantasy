@@ -1,0 +1,25 @@
+<header class="navbar container">
+  <a class="logo">
+    FANTASY
+  </a>
+  <mat-icon class="close-button"
+            mat-button
+            (click)="closeDialog()">
+    close
+  </mat-icon>
+</header>
+<main class="container">
+  <h2 class="title">
+    Выберите город
+  </h2>
+  <input style="margin-bottom: 1.5rem"
+         placeholder="Поиск"
+         [(ngModel)]="regionRusName">
+  <div class="row no-gutters">
+    <a class="col-md-3 region-name"
+       *ngFor="let region of regions | searchRegion: regionRusName;"
+       (click)="openRegion(region)">
+      {{region.rus_name}}
+    </a>
+  </div>
+</main>

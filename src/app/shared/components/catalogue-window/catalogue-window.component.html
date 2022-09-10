@@ -1,0 +1,44 @@
+<header class="navbar container">
+  <a class="logo">
+    FANTASY
+  </a>
+  <mat-icon class="close-button"
+            mat-button
+            (click)="onNoClick()">
+    close
+  </mat-icon>
+</header>
+
+<main class="container">
+  <a class="title"
+     (click)="returnBack()">
+    <mat-icon *ngIf="title != 'Каталог'">
+      arrow_back_ios
+    </mat-icon>
+    <h2>{{title}}</h2>
+  </a>
+  <div class="row justify-content-between no-gutters">
+    <div *ngFor="let element of viewCollection;"
+         [ngClass]="(element.data)?'catalog-element col-md-3':'catalog-third-elements col-md-4'">
+      <hr>
+      <h5 class="mb-3 hov-red"
+          style="cursor: pointer;"
+          (click)="openNextLevel(element)">
+        {{element?.name}}
+      </h5>
+      <p class="catalog-element-text hov-red"
+         *ngFor="let index of checkLengthChildElements(element.data);"
+         (click)="openThirdLevel(element.data[index])">
+        {{element.data[index]?.name}}
+      </p>
+      <p class="mt-2"
+         *ngIf="checkLengthChildElements(element.data).length == 3 && element?.data.length > 3">
+        <a class="more hov-red"
+           (click)="openNextLevel(element)">
+          Еще {{element?.data.length - 3}}
+        </a>
+      </p>
+    </div>
+  </div>
+</main>
+

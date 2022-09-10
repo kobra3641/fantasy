@@ -1,0 +1,133 @@
+p, h1, h2, h3, h4, h5 {
+  margin: 0;
+}
+a {
+  color: black;
+  cursor: pointer;
+  text-decoration: none;
+}
+.close-button {
+  cursor: pointer;
+}
+.logo {
+  height: 50px;
+  align-items: center;
+  display: flex;
+  font-weight: bold;
+  font-size: 18px;
+  cursor: default;
+  text-decoration: none;
+  color: black;
+}
+.navbar {
+  padding: 1rem 1rem;
+}
+::ng-deep .mat-dialog-container {
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
+}
+::ng-deep .cdk-overlay-dark-backdrop {
+  background: transparent;
+  transition: none;
+  animation: none;
+}
+.main-catalog-content {
+  display: grid;
+  grid-template-rows: repeat(4, 150px);
+  grid-template-columns: repeat(4, 250px);
+  gap: 40px 40px;
+}
+.catalog-element {
+  min-width: 270px;
+  min-height: 180px;
+  padding: 0!important;
+}
+.catalog-element h5, p {
+  max-width: 250px;
+}
+.catalog-element-text {
+  color: darkgray;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+mat-icon {
+  cursor: pointer;
+}
+.more {
+  font-size: 14px;
+}
+.hov-red:hover {
+  color: indianred;
+}
+
+.catalog-third-elements h5{
+  font-weight: unset;
+  font-size: unset;
+  line-height: unset;
+
+  color: black;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.catalog-third-elements h5:hover {
+  color: indianred;
+}
+
+hr {
+  display: none;
+}
+.test > .catalog-element:first-child hr {
+  opacity: 0;
+}
+
+@media (max-width: 1200px) {
+  .catalog-element {
+    min-width: 300px;
+  }
+  .catalog-element h5, p {
+    max-width: 280px;
+  }
+}
+
+@media (max-width: 992px) {
+  .catalog-element {
+    min-width: 340px;
+  }
+  .catalog-element h5, p {
+    max-width: 320px;
+  }
+}
+
+@media (max-width: 768px) {
+  .catalog-element {
+    min-width: 100%;
+  }
+  .catalog-element h5, p {
+    max-width: 100%;
+  }
+  hr {
+    display: block;
+  }
+}
+.title {
+  display: flex;
+  align-items: center;
+  margin: 1.5rem 0!important;
+  width: max-content;
+  cursor: pointer;
+}
+.title mat-icon {
+  transition: left .4s;
+  position: relative;
+  left: 0;
+}
+.title:hover mat-icon, .title:hover {
+  color: indianred;
+  left: -5px;
+}

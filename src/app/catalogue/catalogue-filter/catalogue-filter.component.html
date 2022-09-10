@@ -1,0 +1,22 @@
+<div class="options-block"
+     *ngFor="let catalogOption of catalogOptions">
+  <p class="options-block-title">
+    {{catalogOption.rus_name}}
+  </p>
+  <div [ngClass]="i>=5?'hidden':'show'"
+       id="{{catalogOption.name}}"
+       *ngFor="let optionValue of catalogOption.data; index as i">
+    <mat-checkbox color="primary"
+                  checked="{{optionValue.active}}"
+                  disabled="{{!optionValue.count}}"
+                  (change)="setQueryParams(catalogOption, optionValue)">
+      <p>
+        {{prepareOptionValueName(optionValue)}}
+      </p>
+    </mat-checkbox>
+  </div>
+  <a *ngIf="catalogOption.data?.length >= 5"
+     (click)="showMore(catalogOption, $event.target)">
+    {{'Показать еще'}}
+  </a>
+</div>

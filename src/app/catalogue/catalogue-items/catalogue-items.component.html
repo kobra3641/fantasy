@@ -1,0 +1,58 @@
+<div class="filter-search mb-4">
+  <button class="filter-button" mat-stroked-button>
+    {{'Фильтры'}}
+  </button>
+  <p class="goodsValue">
+    {{count}} товаров
+  </p>
+  <button class="openFilter"
+          mat-stroked-button
+          [matMenuTriggerFor]="menu"
+          (onMenuOpen)="ratingArrow = false"
+          (onMenuClose)="ratingArrow = true">
+    {{ratingSelect}}
+    <mat-icon>
+      {{ratingArrow?'keyboard_arrow_down':'keyboard_arrow_up'}}
+    </mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button title="{{sortingElement.name}}"
+            value="{{sortingElement.value}}"
+            mat-menu-item
+            *ngFor="let sortingElement of sortingElements"
+            (click)="ratingSort($event.target)">
+      {{sortingElement.name}}
+    </button>
+  </mat-menu>
+
+  <mat-button-toggle-group class="toggleGroup"
+                           [value]="goodsView"
+                           (change)="changeToggleGroup($event.value)">
+    <mat-button-toggle value="list">
+      <svg viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M0 0H10V2H0V0ZM0 4H10V6H0V4ZM10 8H0V10H10V8Z"/>
+      </svg>
+    </mat-button-toggle>
+    <mat-button-toggle value="largeCard">
+      <svg viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M4 0H0v4h4V0zm0 6H0v4h4V6zm2-6h4v4H6V0zm4 6H6v4h4V6z"/>
+      </svg>
+    </mat-button-toggle>
+  </mat-button-toggle-group>
+</div>
+
+<div [class]="goodsView == 'largeCard'?'largeCard':''">
+  <div class="good"
+       *ngFor="let element of goods | paginate : {itemsPerPage: 20, currentPage: page, totalItems: count}">
+    <img src="../../assets/images/Product.png">
+    <hr>
+    <p>{{element?._source?.price}}</p>
+    <p>{{element?._source?.name}}</p>
+  </div>
+</div>
+
+<pagination-controls
+  (pageChange)="handlePageChange($event)"
+  previousLabel = ""
+  nextLabel = "">
+</pagination-controls>

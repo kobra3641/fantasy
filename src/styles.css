@@ -1,0 +1,54 @@
+html, body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: "Nunito", sans-serif!important;
+  height: auto
+}
+.mat-button, .mat-raised-button, .mat-icon-button, .mat-stroked-button, .mat-flat-button, .mat-fab, .mat-mini-fab {
+  font-family: "Nunito", sans-serif!important;
+}
+.no-gutters {
+  margin-left: 0!important;
+  margin-right: 0!important;
+  padding-left: 0!important;
+  padding-right: 0!important;
+}
+::ng-deep .mat-dialog-container {
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
+}
+::ng-deep .cdk-overlay-dark-backdrop {
+  background: transparent;
+  transition: none;
+  animation: none;
+}
+a {
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
+}
+a:hover {
+  color: black;
+}
+.on-hover:hover {
+  color: var(--on-hover)!important;
+}
+.logo {
+  font-weight: bold;
+  font-size: 18px;
+  grid-area: logo;
+  text-align: center;
+  line-height: 50px;
+}
+.navbar {
+  padding: .5rem 1rem;
+}
+p, h1, h2, h3, h4, h5 {
+  margin: 0;
+}
+:root {
+  --on-hover: green;
+}
