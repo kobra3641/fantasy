@@ -42,7 +42,7 @@ export class CatalogueFilterComponent {
   }
 
   private setQueryParams(queryParamItem: QueryParamItem) {
-    const queryParams: Record<any, any> = this.queryParamsService.updateQueryParams(this.activatedRoute.snapshot.queryParams, queryParamItem);
+    const queryParams: Record<any, any> = this.queryParamsService.updateQueryParams(this.activatedRoute.snapshot.queryParamMap, queryParamItem);
     this.router.navigate([], {queryParams, relativeTo: this.activatedRoute}).then();
   }
 

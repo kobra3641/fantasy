@@ -36,7 +36,7 @@ export class CatalogueItemsComponent implements OnChanges {
   public handlePageChange(page: number): void {
     this.page = page;
     const queryParamItem: QueryParamItem = {property: 'page', value: page};
-    const queryParams: Record<any, any> = this.queryParamsService.updateQueryParams(this.activatedRoute.snapshot.queryParams, queryParamItem);
+    const queryParams: Record<any, any> = this.queryParamsService.updateQueryParams(this.activatedRoute.snapshot.queryParamMap, queryParamItem);
     this.router.navigate([], {queryParams}).then();
   }
 

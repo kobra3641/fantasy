@@ -31,7 +31,8 @@ export class RegionComponent implements OnInit {
 
   public openRegion(region: any) {
     this.storageService.setRegion(region);
-    location.reload();
+    this.closeDialog();
+    // location.reload();
   }
 
   public closeDialog(): void {

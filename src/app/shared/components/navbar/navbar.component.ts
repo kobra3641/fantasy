@@ -1,23 +1,35 @@
 import {Component, OnInit, Renderer2} from '@angular/core';
 import {Router} from "@angular/router";
 import {DialogManager} from "../../../core/services/dialog.manager";
+import {CookieService} from "ngx-cookie-service";
+import {StorageService} from "../../../core/services/storage.service";
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit{
 
   title = 'fantasy';
-  region = this.getRegion();
+  region = 'Выберите город';
 
   regionDialog: any;
   catalogueDialog: any;
 
+  public goods: any;
+
   constructor(public router: Router,
               private renderer: Renderer2,
-              private dialogManager: DialogManager){
+              private dialogManager: DialogManager,
+              private storageService: StorageService
+  ){
+  }
+
+  ngOnInit(): void {
+    this.storageService.region$.subscribe((region: any) => {
+      this.region = region?.rus_name;
+    })
   }
 
   public getRegion() {
@@ -66,16 +78,16 @@ export class NavbarComponent {
     // }
 
   }
-
-  public openSearchBarDialog(): void {
-    if (this.regionDialog) {
-      this.regionDialog.close();
-    }
-    if (this.catalogueDialog) {
-      this.catalogueDialog.close();
-    }
-    this.dialogManager.openSearchBarDialog();
-  }
+  //
+  // public openSearchBarDialog(): void {
+  //   if (this.regionDialog) {
+  //     this.regionDialog.close();
+  //   }
+  //   if (this.catalogueDialog) {
+  //     this.catalogueDialog.close();
+  //   }
+  //   this.dialogManager.openSearchBarDialog();
+  // }
 
   public openShops(): void {
     if (this.regionDialog) {
@@ -110,4 +122,5 @@ export class NavbarComponent {
     console.log(input)
     // disp.classList.add('header-component-disable')
   }
+
 }

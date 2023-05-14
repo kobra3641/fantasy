@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-// import {BaseCookieStorage} from "../../core/services/base-cookie.storage";
+import {CookieService} from "ngx-cookie-service";
 
 @Component({
   selector: 'app-cart-view',
@@ -8,12 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CartViewComponent implements OnInit {
 
+  public products: any;
   constructor(
-    // public baseCookieStorage: BaseCookieStorage
+    private cookieService: CookieService
   ) { }
 
   ngOnInit(): void {
-    // this.baseCookieStorage.setItem('key', 'data')
+    this.products = JSON.parse(this.cookieService.get('cart') ? this.cookieService.get('cart') : '[]');
+    console.log(this.products)
   }
 
 }

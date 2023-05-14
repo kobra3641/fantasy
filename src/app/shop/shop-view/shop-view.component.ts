@@ -33,9 +33,11 @@ export class ShopViewComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    console.log('init')
     this._subscriptions.add(
       this.storageService.region$.subscribe({
       next: (region) => {
+        console.log('region sub')
         this.region = region;
       }
       })
@@ -94,6 +96,7 @@ export class ShopViewComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    console.log('destroy')
     this._subscriptions.unsubscribe();
   }
 

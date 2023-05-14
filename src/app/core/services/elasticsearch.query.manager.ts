@@ -24,6 +24,7 @@ export class ElasticsearchQueryManager {
 
   public createRequest(catalogOptions: CatalogOption[], queryParamMap: Record<any,any>): ElasticRequest {
     this._elasticsearchRequestBuilder = new ElasticsearchRequestBuilder();
+    console.log(queryParamMap);
     this.prepareStandardBlockRequest(queryParamMap);
     this.prepareSortBlockRequest(queryParamMap);
     this.prepareQueryBlockRequest(queryParamMap);

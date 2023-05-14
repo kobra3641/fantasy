@@ -35,7 +35,7 @@
 
 <header class="d-flex align-items-center header">
   <div class="header-search-active" #darkness></div>
-  <div class="container d-flex align-items-center justify-content-between">
+  <div class="container d-flex gap-1 align-items-center justify-content-between">
     <img src="assets/images/menu.svg" class="header-mobile">
     <div class="d-flex gap-1 align-items-center header-component" #elements>
       <a class="logo" [routerLink]="['']">FANTASY</a>
@@ -44,12 +44,12 @@
       <a class="header-item" (click)="openShops()" [class.header-item-active]="router.url == '/shop'">Магазины</a>
       <a class="d-flex align-items-center gap-1 header-item" (click)="openRegionDialog()">
         <img src="assets/images/map_pin.svg">
-        <span>{{region.rus_name}}</span>
+        <span>{{region}}</span>
       </a>
       <a class="header-item header-basket d-flex gap-2 justify-content-center align-items-center"
          (click)="openCart()" [class.header-item-active]="router.url == '/basket'">
         <span>Корзина</span>
-        <p class="basket-counter">0</p>
+        <p class="basket-counter">{{0}}</p>
       </a>
     </div>
 

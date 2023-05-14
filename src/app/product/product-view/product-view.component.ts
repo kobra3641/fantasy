@@ -84,7 +84,7 @@ export class ProductViewComponent implements OnInit, OnDestroy {
     const item: any = {
       name: this.product.name,
       price: this.product.price,
-      value: 0
+      value: 1
     }
     // const element: any = {
     //   items: [] = [item]

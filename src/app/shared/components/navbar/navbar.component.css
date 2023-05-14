@@ -69,6 +69,8 @@
   font-weight: 500;
   font-size: 15px;
   border-radius: 8px;
+  overflow: hidden;
+  white-space: nowrap;
 }
 .header-item img {
   padding-bottom: 4px;

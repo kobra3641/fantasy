@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {ApiConstants} from "../configurations/api.constants";
 import {QueryParamItem} from "../../catalogue/models/query.param.item";
-import {ParamMap} from "@angular/router";
+import {ParamMap, Params} from "@angular/router";
 
 @Injectable({providedIn: "root"})
 export class QueryParametersService {
@@ -12,8 +12,8 @@ export class QueryParametersService {
 
   public getCurrentQueryParams = (currentQueryParams: ParamMap, itemsNotIncluded?: any[]): Record<any,any> => {
     const queryParams: Record<any,any> = {};
-    if(currentQueryParams)
-      Object.keys(currentQueryParams.keys).forEach((item) => {
+    if(currentQueryParams.keys.length > 0)
+      currentQueryParams.keys.forEach((item: string) => {
         queryParams[item] = currentQueryParams.get(item);
         if(itemsNotIncluded && itemsNotIncluded.includes(item))
           delete queryParams[item];
@@ -40,7 +40,8 @@ export class QueryParametersService {
     return chips;
   }
 
-  public updateQueryParams = (currentQueryParams: any, updateItem: QueryParamItem): any => {
+  public updateQueryParams = (currentQueryParams: ParamMap, updateItem: QueryParamItem): any => {
+    console.log(currentQueryParams);
     let queryParams: Record<any,any> = this.getCurrentQueryParams(currentQueryParams);
     if(this.constants.standardQueryProperties.includes(updateItem.property))
       this.updateStandardQueryProperties(queryParams, updateItem);
