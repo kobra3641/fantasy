@@ -30,6 +30,10 @@ export class NavbarComponent implements OnInit{
     this.storageService.region$.subscribe((region: any) => {
       this.region = region?.rus_name;
     })
+    this.storageService.goodsCount$.subscribe((count: number) => {
+      console.log('c', count);
+      this.goods = count;
+    })
   }
 
   public getRegion() {

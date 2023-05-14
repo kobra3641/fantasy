@@ -9,6 +9,7 @@ import {ElasticRequest} from "../../core/models/elastic.request";
 import {ElasticResponse} from "../../core/models/elastic.response";
 import {CategoryOptionsService} from "../../core/services/categoryOptions.service";
 import {CookieService} from "ngx-cookie-service";
+import {StorageService} from "../../core/services/storage.service";
 
 @Component({
   selector: 'app-product-view',
@@ -27,7 +28,8 @@ export class ProductViewComponent implements OnInit, OnDestroy {
     private productService: ProductService,
     private activatedRoute: ActivatedRoute,
     private categoryOptionsService: CategoryOptionsService,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private storageService: StorageService
   ) {}
 
   ngOnInit(): void {
@@ -65,7 +67,6 @@ export class ProductViewComponent implements OnInit, OnDestroy {
   public getRusName(key: unknown) {
     const keyString:string = String(key);
     const name: any = this.catalogOptions.filter((item) => item.en_name.includes(keyString))[0];
-    console.log('name', name);
     return name ? name.rus_name : '';
   }
 
@@ -93,6 +94,8 @@ export class ProductViewComponent implements OnInit, OnDestroy {
     const cart: any[] = currCart ? JSON.parse(currCart) : [];
     cart.push(item)
     this.cookieService.set('cart', JSON.stringify(cart))
+    this.storageService.setGoodsCount(cart.length);
+    console.log(this.storageService.goodsCount$.value)
     // this.cookieService.setItem('cart', JSON.stringify(this.product))
   }
 

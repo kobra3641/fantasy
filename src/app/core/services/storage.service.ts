@@ -5,6 +5,7 @@ import {BehaviorSubject} from "rxjs";
 export class StorageService {
 
   public region$: BehaviorSubject<any> = new BehaviorSubject<any>({rus_name: 'Выберите город'})
+  public goodsCount$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
 
   constructor() {
     this.loadSubjects();
@@ -29,4 +30,7 @@ export class StorageService {
       return JSON.parse(region);
   }
 
+  public setGoodsCount(count: number) {
+    this.goodsCount$.next(count);
+  }
 }
