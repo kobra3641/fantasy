@@ -22,8 +22,11 @@
     "@angular/platform-browser-dynamic": "^14.2.0",
     "@angular/router": "^14.2.0",
     "bootstrap": "^5.2.1",
+    "keen-slider": "^6.8.3",
     "ngx-bootstrap": "^9.0.0",
+    "ngx-cookie-service": "^14.0.1",
     "ngx-pagination": "^6.0.2",
+    "ngx-quicklink": "^0.3.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

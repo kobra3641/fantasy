@@ -1,287 +1,120 @@
-.title {
-  margin: 1.5rem 0!important;
-  grid-area: title;
-}
-main {
-  display: grid;
-  grid-template-columns: 20% 80%;
-  grid-template-rows: repeat(3, auto);
-  grid-template-areas: 'title title'
-  'filter filter'
-  'options goods';
-}
-.options {
-  grid-area: options;
-  display: flex;
-  flex-direction: column;
-}
-.goods {
-  grid-area: goods;
-}
-.options-block {
-  margin: 0 0 30px 0;
-}
-.options-block a {
-  cursor: pointer;
-  font-size: 14px;
-}
-.options-block-title {
-  color: #7E7E7E;
-  margin-bottom: 10px;
-}
-.options-block mat-checkbox {
-  font-size: 14px;
-}
-.filter-search {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
-  text-align: center;
-}
-.filter-search p {
-  font-size: 14px;
-}
-::ng-deep .mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
-  line-height: 36px;
-}
-::ng-deep .mat-button-toggle-button {
-  width: 100%!important;
-  height: 36px!important;
-}
-::ng-deep .mat-button-toggle-label-content {
-  display: flex!important;
-}
-svg {
-  width: 10px;
-  height: 10px;
-}
-.good {
-  display: grid;
-  grid-template-columns: 160px repeat(2, 1fr);
-  grid-template-rows: auto;
-  height: 200px;
-  padding: 20px;
-  grid-template-areas: 'img firstElement secondElement';
-}
-.good img {
-  margin: 15px auto;
-  width: 100%;
-}
-.good hr {
-  display: none;
-}
-.largeCard .good hr {
-  margin: 0;
-  border-color: #EEEEEE;
-  display: block;
-}
-.largeCard {
+.large-cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: auto;
+  padding: 16px 0 0 0;
 }
-.largeCard .good {
-  grid-template-columns: auto;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-}
-.largeCard .good img {
-  width: 200px;
-  height: 200px;
-}
-.largeCard .good p {
-  margin: 0;
-  padding: 0px 25px;
-}
-.largeCard .good p:nth-child(3) {
-  padding: 15px 25px;
-  font-size: 18px;
-  grid-area: firstElement;
-}
-.largeCard .good p:nth-child(4) {
-  color: #7E7E7E;
-  grid-area: secondElement;
-}
-.good p:nth-child(3) {
-  margin-left: 20px;
-  grid-area: secondElement;
-}
-.good p:nth-child(4) {
-  margin-left: 70px;
-  grid-area: firstElement;
-}
-::ng-deep .ngx-pagination .disabled {
-  display: none!important;
-}
-::ng-deep .ngx-pagination li.small-screen {
-  display: none!important;
-}
-::ng-deep .ngx-pagination li {
-  width: 40px!important;
-  height: 40px!important;
-  border-radius: 40px!important;
-  border: 1px solid lightgray!important;
-  color: black!important;
-  padding: 0!important;
-  display: inline-flex!important;
-  justify-content: center!important;
-  align-items: center!important;
-  margin-right: 12px!important;
-}
-::ng-deep .ngx-pagination li a{
-  background: transparent!important;
-  text-decoration: none!important;
-}
-::ng-deep .ngx-pagination .current {
-  background: transparent!important;
-  border: 1px solid gray!important;
-}
-::ng-deep .ngx-pagination {
-  padding: 0!important;
-  display: flex!important;
-}
-::ng-deep .pagination-previous, ::ng-deep .pagination-next {
-  background: #e0e0e0!important;
-}
-::ng-deep .pagination-next a, ::ng-deep .pagination-previous a  {
-  display: flex!important;
-  padding: 0!important;
-  font-size: 24px!important;
-}
-::ng-deep .pagination-next a:after {
-  font-family: "Material Icons"!important;
-  content: '\e5cc'!important;
-  margin: 0!important;
-}
-::ng-deep .pagination-previous a:before {
-  font-family: "Material Icons"!important;
-  content: '\e5cb'!important;
-  margin: 0!important;
-}
-.openFilter ::ng-deep .mat-button-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-::ng-deep .mat-checkbox-layout {
-  white-space: normal !important;
-}
-.show {
-  display: block;
-}
-.hidden {
-  display: none;
-}
-.filter-element {
-  height: 80px;
-  border-radius: 5px;
-  box-shadow: 0px 0px 10px 0px rgba(34, 60, 80, 0.1);
-  padding: 12px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+.large-card {
+  border: 1px solid rgba(0, 16, 61, 0.12);
+  padding: 8px 12px;
+  height: 450px;
+  border-radius: 16px;
   cursor: pointer;
+  transition: border-color .2s ease-in-out,box-shadow .2s ease-in-out,-webkit-box-shadow .2s ease-in-out;
+}
+.large-card:hover {
+  box-shadow: 0 12px 40px 0 rgb(0 16 61 / 12%);
+  border-color: transparent;
+}
+.large-card-image {
+  border-radius: 12px;
+  width: 100%;
+  height: 100%;
+  background-size: cover!important;
+}
+.large-card-title {
+  font-weight: 500;
+  font-size: 16px;
+  margin-top: auto;
+}
+.large-card-subtitle {
+  width: 100%;
+}
+.large-card-about {
+  border-radius: 8px;
+  padding: 8px;
   text-align: center;
-  width: calc(20% - 15px);
 }
-.filter-element p {
-  font-size: 14px;
-}
-.filter-button {
+.good-edit {
   display: none;
-  grid-area: filtres;
+  position: absolute;
+  top: 0;
+  right: 0;
+  opacity: 0;
+  margin: 10px;
+  transition: all 0.2s;
 }
-.goodsValue {
-  margin-right: auto;
-  grid-area: goodsValue;
+.catalogue-filter-sidebar {
+  padding: 16px 0 0 0;
+  min-height: calc(100vh - 62px);
+  height: auto;
 }
-.filter {
-  grid-area: filter;
-  gap: 15px;
-}
-@media(max-width: 1200px) {
-  .filter-element img {
-    display: none;
-  }
-  .filter-element p {
-    display: block;
-  }
-  main {
-    grid-template-columns: 100%;
-    grid-template-rows: repeat(3, auto);
-    grid-template-areas: 'title'
-    'filter'
-    'goods';
-  }
-  .options {
-    display: none;
-  }
-  .filter-button {
-    display: block;
-  }
-}
-@media(max-width: 768px) {
-  .filter-element img {
-    display: block;
-  }
-  .filter-element p {
-    display: none;
-  }
-  .largeCard {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-@media(max-width: 576px) {
-  .largeCard {
-    grid-template-columns: 1fr;
-  }
-  .filter {
-    gap: 0;
-  }
-  .toggleGroup {
-    display: none;
-  }
-  .filter-search {
-    display: grid;
-    grid-template-columns: repeat(2, auto);
-    grid-template-rows: repeat(2, auto);
-    grid-template-areas: 'filtres sort'
-    'goodsValue .';
-    gap: 5px;
-    text-align: center;
-  }
-  .goodsValue {
-    margin: 0;
-  }
-  .filter-element {
-    width: max-content;
-    height: max-content;
-    padding: 10px;
-  }
-  .filter-element img {
-    width: 44px;
-  }
-}
-mat-chip {
+.catalogue-filter-sidebar-element {
+  border-radius: 8px;
+  transition: all 0.3s ease-in-out;
   cursor: pointer;
 }
-.matChip {
-  color: white;
-  background: #464c5c;
+.catalogue-filter-sidebar-element p {
+  font-weight: 400;
 }
-.matChip mat-icon {
-  color: white;
+.catalogue-filter-sidebar-element:hover {
+  background: rgba(0,16,61,.04);
 }
-.matChipClear {
-  color: black;
-  background: transparent;
-  border: 2px solid #ced0d6;
+.catalogue-filter-sidebar-element[open] .cfs-summary img{
+  transform: rotateZ(90deg);
 }
-.matChipClear:hover {
-  background: transparent;
+.cfs-summary img {
+  transition: all 0.2s ease;
 }
-.matChips {
-  grid-area: matChips;
+.cfs-summary {
+  padding: 12px;
+}
+.element-list {
+  padding: 0 12px 12px 12px;
+}
+.element-list-array {
+  overflow-y: auto;
+  max-height: 300px;
+}
+.cfsc-disabled:before {
+  background: rgba(0, 16, 61, 0.08);
+  border: 1px solid rgba(0, 16, 61, 0.12);
+}
+.catalogue-filter-sidebar-checkbox {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+}
+.catalogue-filter-sidebar-checkbox+label {
+  display: inline-flex;
+  align-items: center;
+  user-select: none;
+  cursor: pointer;
+}
+.catalogue-filter-sidebar-checkbox+label::before {
+  content: '';
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
+  flex-grow: 0;
+  border: 1px solid #adb5bd;
+  border-radius: 0.25em;
+  margin-right: 0.5em;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 50% 50%;
+}
+.catalogue-filter-sidebar-checkbox:checked+label::before {
+  border: none #005FF9;
+  background-color: #005FF9;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 6'%3e%3cpath fill='white' d='M7.7 0.3C7.3 -0.1 6.7 -0.1 6.3 0.3L3 3.6L1.7 2.3C1.3 1.9 0.7 1.9 0.3 2.3C-0.1 2.7 -0.1 3.3 0.3 3.7L2.3 5.7C2.5 5.9 2.7 6 3 6C3.3 6 3.5 5.9 3.7 5.7L7.7 1.7C8.1 1.3 8.1 0.7 7.7 0.3Z'/%3e%3c/svg%3e");
+}
+.catalogue-filter-sidebar-number {
+  all: unset;
+  border: 1px solid #adb5bd;
+  border-radius: 0.25em;
+  padding: 4px 8px;
+  min-width: 50px;
+  width: 100%;
 }

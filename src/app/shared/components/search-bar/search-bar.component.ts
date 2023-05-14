@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {MatDialogRef} from "@angular/material/dialog";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-search-bar',
@@ -9,7 +10,8 @@ import {MatDialogRef} from "@angular/material/dialog";
 export class SearchBarComponent implements OnInit {
 
   constructor(
-    public dialogRef: MatDialogRef<SearchBarComponent>
+    public dialogRef: MatDialogRef<SearchBarComponent>,
+    public router: Router
   ) { }
 
   ngOnInit(): void {

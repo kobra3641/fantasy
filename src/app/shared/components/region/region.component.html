@@ -1,25 +1,29 @@
-<header class="navbar container">
-  <a class="logo">
-    FANTASY
-  </a>
-  <mat-icon class="close-button"
-            mat-button
-            (click)="closeDialog()">
-    close
-  </mat-icon>
-</header>
+<!--<header class="navbar container">-->
+<!--  <a class="logo d-flex gap-3 align-items-center">-->
+<!--    <img src="../assets/images/logotype.png" class="h-100">-->
+<!--    FANTASY-->
+<!--  </a>-->
+<!--  <mat-icon class="close-button"-->
+<!--            mat-button-->
+<!--            (click)="closeDialog()">-->
+<!--    close-->
+<!--  </mat-icon>-->
+<!--</header>-->
+
+
 <main class="container">
-  <h2 class="title">
-    Выберите город
-  </h2>
-  <input style="margin-bottom: 1.5rem"
-         placeholder="Поиск"
-         [(ngModel)]="regionRusName">
-  <div class="row no-gutters">
-    <a class="col-md-3 region-name"
-       *ngFor="let region of regions | searchRegion: regionRusName;"
-       (click)="openRegion(region)">
-      {{region.rus_name}}
-    </a>
+  <div class="d-flex flex-column justify-content-center region-container">
+    <div class="d-flex justify-content-between align-items-center region-title">
+      <p class="">Выберите регион</p>
+      <img src="assets/images/close.svg" (click)="closeDialog()">
+    </div>
+    <div class="d-grid gap-1 region-items">
+      <a class="region-item"
+         *ngFor="let region of regions"
+         (click)="region.rus_name != currentRegion.rus_name?openRegion(region):false"
+         [class.region-item-active]="region.rus_name == currentRegion.rus_name">
+        {{region.rus_name}}
+      </a>
+    </div>
   </div>
 </main>

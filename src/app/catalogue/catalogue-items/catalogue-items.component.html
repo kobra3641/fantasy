@@ -1,58 +1,21 @@
-<div class="filter-search mb-4">
-  <button class="filter-button" mat-stroked-button>
-    {{'Фильтры'}}
-  </button>
-  <p class="goodsValue">
-    {{count}} товаров
-  </p>
-  <button class="openFilter"
-          mat-stroked-button
-          [matMenuTriggerFor]="menu"
-          (onMenuOpen)="ratingArrow = false"
-          (onMenuClose)="ratingArrow = true">
-    {{ratingSelect}}
-    <mat-icon>
-      {{ratingArrow?'keyboard_arrow_down':'keyboard_arrow_up'}}
-    </mat-icon>
-  </button>
-  <mat-menu #menu="matMenu">
-    <button title="{{sortingElement.name}}"
-            value="{{sortingElement.value}}"
-            mat-menu-item
-            *ngFor="let sortingElement of sortingElements"
-            (click)="ratingSort($event.target)">
-      {{sortingElement.name}}
-    </button>
-  </mat-menu>
-
-  <mat-button-toggle-group class="toggleGroup"
-                           [value]="goodsView"
-                           (change)="changeToggleGroup($event.value)">
-    <mat-button-toggle value="list">
-      <svg viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
-        <path fill-rule="evenodd" clip-rule="evenodd" d="M0 0H10V2H0V0ZM0 4H10V6H0V4ZM10 8H0V10H10V8Z"/>
-      </svg>
-    </mat-button-toggle>
-    <mat-button-toggle value="largeCard">
-      <svg viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
-        <path fill-rule="evenodd" clip-rule="evenodd" d="M4 0H0v4h4V0zm0 6H0v4h4V6zm2-6h4v4H6V0zm4 6H6v4h4V6z"/>
-      </svg>
-    </mat-button-toggle>
-  </mat-button-toggle-group>
-</div>
-
-<div [class]="goodsView == 'largeCard'?'largeCard':''">
-  <div class="good"
-       *ngFor="let element of goods | paginate : {itemsPerPage: 20, currentPage: page, totalItems: count}">
-    <img src="../../assets/images/Product.png">
-    <hr>
-    <p>{{element?._source?.price}}</p>
-    <p>{{element?._source?.name}}</p>
+<div class="large-cards gap-3">
+  <div class="large-card gap-1 d-flex flex-column justify-content-between align-items-center"
+       *ngFor="let element of item.goods | paginate : {itemsPerPage: 30, currentPage: page, totalItems: item.count}"
+       (click)="openGood(element)">
+    <div class="d-flex flex-column" style="max-height: 64px">
+      <p class="large-card-title ">{{element?._source?.name}}</p>
+      <div class="large-card-subtitle d-flex align-items-center justify-content-around">
+        <p class="large-card-about d-flex align-items-center justify-content-around">{{element?._source?.price}} ₽</p>
+      </div>
+    </div>
   </div>
 </div>
-
-<pagination-controls
-  (pageChange)="handlePageChange($event)"
-  previousLabel = ""
-  nextLabel = "">
-</pagination-controls>
+<div class="d-flex justify-content-center gap-lg-5 mt-5" style="color: rgba(29,29,31,.32); font-size: 18px!important;">
+  <a (click)="page>1?handlePageChange(page-1):''">
+    <span class="material-symbols-outlined" [style]="page==1?'color: rgba(29,29,31,.32)':'color: black'">navigate_before</span>
+  </a>
+  <p>{{page}} из {{pages}}</p>
+  <a (click)="(page < pages)?handlePageChange(page+1):''">
+    <span class="material-symbols-outlined" [style]="page==pages?'color: rgba(29,29,31,.32)':'color: black'">navigate_next</span>
+  </a>
+</div>

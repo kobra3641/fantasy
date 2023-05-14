@@ -1,0 +1,135 @@
+/*!*.element {*!*/
+/*!*  padding: 15px 20px;*!*/
+/*!*  border: 1px solid #d2d2d7;*!*/
+/*!*  border-radius: 12px;*!*/
+/*!*  width: 100%;*!*/
+/*!*  cursor: pointer;*!*/
+/*!*}*!*/
+/*!*.span-arrow-downward {*!*/
+/*!*  display: none;*!*/
+/*!*  right: 10px;*!*/
+/*!*  cursor:pointer;*!*/
+/*!*  padding: 5px;*!*/
+/*!*  border-radius: 12px;*!*/
+/*!*}*!*/
+/*!*.temp-element .span-arrow-downward {*!*/
+/*!*  display: flex!important;*!*/
+/*!*}*!*/
+/*!*.first-element:hover .span-arrow-downward {*!*/
+/*!*  display: flex;*!*/
+/*!*}*!*/
+
+
+/*.element {*/
+/*  background: white;*/
+/*  box-shadow: 0px 2px 5px rgba(38, 51, 77, 0.03);*/
+/*  border-radius: 5px;*/
+
+/*  padding: 20px 25px;*/
+/*  margin-bottom: 1rem;*/
+/*  position: relative;*/
+/*}*/
+/*.element:before {*/
+/*  content: '';*/
+/*  border-radius: 5px;*/
+/*  position: absolute;*/
+/*  left: 0;*/
+
+/*  width: 3px;*/
+/*  height: 30px;*/
+/*}*/
+/*.first-element:before {*/
+/*  background: #875BF7;*/
+/*}*/
+/*.second-element:before {*/
+/*  background: #66C61C;*/
+/*}*/
+/*.third-element:before {*/
+/*  background: #EF6820;*/
+/*}*/
+/*.empty-element {*/
+/*  padding: 20px 25px;*/
+/*  box-shadow: 0px 2px 5px rgba(38, 51, 77, 0.03);*/
+/*  border-radius: 5px;*/
+/*  border: 1px dashed #C3CAD9;*/
+/*  color: #C3CAD9;*/
+/*}*/
+/*.element-disable {*/
+/*  opacity: 0.6;*/
+/*}*/
+/*.element-disable span {*/
+/*  cursor: default!important;*/
+/*}*/
+/*.element-disable .element-add {*/
+/*  display: none;*/
+/*}*/
+
+/*.element-active {*/
+/*  opacity: 1!important;*/
+/*  !*border: 1px solid #C3CAD9!important;*!*/
+/*  box-shadow: 0px 2px 5px rgba(38, 51, 77, 0.2);*/
+/*  font-weight: bold;*/
+/*}*/
+/*.element-active span {*/
+/*  !*color: black!important;*!*/
+/*  cursor: pointer!important;*/
+/*}*/
+/*.element-active .element-add {*/
+/*  display: block!important;*/
+/*}*/
+/*.element-active .element-remove {*/
+/*  display: block;*/
+/*}*/
+/*.element-add {*/
+/*  margin-left: auto;*/
+/*  color: #C3CAD9;*/
+/*  cursor:pointer;*/
+/*}*/
+/*.element-remove {*/
+/*  display: none;*/
+/*  color: #C3CAD9;*/
+/*  cursor:pointer;*/
+/*}*/
+
+
+/*.element-input {*/
+/*  all: unset;*/
+/*}*/
+
+.title {
+  font-weight: 500;
+  font-size: 2rem;
+}
+.catalogue-edit-container {
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+.catalogue-edit-element {
+  /*height: 40px;*/
+  font-weight: 400;
+  font-size: 15px;
+  padding: 12px 16px;
+  position: relative;
+  border: 1px solid rgba(0, 16, 61, 0.12);
+  border-radius: 4px;
+}
+.catalogue-edit-element img {
+  cursor: pointer;
+}
+.catalogue-edit-element:hover {
+  background: rgba(0, 16, 61, 0.04);
+}
+.mobile-unavailable {
+  display: none;
+  font-weight: 600;
+  height: calc(100% - 62px);
+}
+
+@media (max-width: 992px) {
+  .mobile-unavailable {
+    display: flex;
+  }
+  .pc-available {
+    display: none;
+  }
+}

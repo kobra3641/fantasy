@@ -11,7 +11,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {NgxPaginationModule} from "ngx-pagination";
 import {MatIconModule} from "@angular/material/icon";
 import {MatDialogModule} from "@angular/material/dialog";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {MatMenuModule} from "@angular/material/menu";
@@ -21,6 +21,11 @@ import {RouterModule} from "@angular/router";
 import {DialogManager} from "./services/dialog.manager";
 import {StorageService} from "./services/storage.service";
 import {MatSidenavModule} from "@angular/material/sidenav";
+import {SessionStorageService} from "./services/session.storage.service";
+import {MatSelectModule} from "@angular/material/select";
+import {MatInputModule} from "@angular/material/input";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   imports: [
@@ -38,9 +43,14 @@ import {MatSidenavModule} from "@angular/material/sidenav";
     MatCheckboxModule,
     MatChipsModule,
     MatIconModule,
-    MatSidenavModule
+    MatSidenavModule,
+    ReactiveFormsModule,
+    MatSelectModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [
+    CookieService,
     ApiConstants,
     Regions,
     ApiHttpService,
@@ -49,7 +59,8 @@ import {MatSidenavModule} from "@angular/material/sidenav";
     QueryParametersService,
     ElasticsearchRequestBuilder,
     DialogManager,
-    StorageService
+    StorageService,
+    SessionStorageService
   ]
 })
 export class CoreModule { }

@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {CategoryService} from "../../../core/services/category.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-catalogue-window',
@@ -9,6 +9,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./catalogue-window.component.css']
 })
 export class CatalogueWindowComponent implements OnInit, AfterViewInit {
+
   arr = Array;
   arrFirst: Array<any> = [];
   arrSecond: Array<any> = [];
@@ -22,18 +23,19 @@ export class CatalogueWindowComponent implements OnInit, AfterViewInit {
     public dialogRef: MatDialogRef<CatalogueWindowComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private categoryService: CategoryService,
-    private router: Router
+    public router: Router,
+    public activeRoute: ActivatedRoute
   ) {
     this.title = String('Каталог');
   }
 
   ngOnInit(): void {
     this.categoryService.findAll().subscribe(data => {
-      const firstLevel = data.filter((item: any) => item.catalog_child_id == 0);
+      const firstLevel = data.filter((item: any) => item.child_id == 0);
       this.arrFirst = firstLevel.map((itemFirst: any) => {
-        const elementsSecondLevel = data.filter((findItem: any) => findItem.catalog_child_id == itemFirst.id);
+        const elementsSecondLevel = data.filter((findItem: any) => findItem.child_id == itemFirst.id);
         this.arrSecond = elementsSecondLevel.map((itemSecond: any) => {
-          const elementsThirdLevel = data.filter((findItem: any) => findItem.catalog_child_id == itemSecond.id);
+          const elementsThirdLevel = data.filter((findItem: any) => findItem.child_id == itemSecond.id);
           return {...itemSecond, data: elementsThirdLevel};
         })
         return {...itemFirst, data: this.arrSecond};
@@ -45,6 +47,26 @@ export class CatalogueWindowComponent implements OnInit, AfterViewInit {
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+
+  public closeDialog(): void {
+    // // @ts-ignore
+    // document.querySelector('.elements').classList.add('animation-close');
+    //
+    // setTimeout(()=>{
+    //   // @ts-ignore
+    //   document.querySelector('.catalogue-title').classList.add('animation-close');
+    // },500)
+    //
+    // setTimeout(()=>{
+    //   // @ts-ignore
+    //   document.querySelector('.region-open').classList.add('region-close');
+    // },1000)
+    //
+    // setTimeout(()=>{
+      this.dialogRef.close();
+    // }, 2000)
+
   }
 
   ngAfterViewInit(): void {
@@ -77,7 +99,8 @@ export class CatalogueWindowComponent implements OnInit, AfterViewInit {
     }
     else {
       this.categoryService.saveCatalog(element);
-      this.router.navigate([`catalogue/${element.path}`]).then();
+      this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
+        this.router.navigate([`catalogue/${element.url}`], {relativeTo: this.activeRoute}));
       this.dialogRef.close();
     }
   }
@@ -107,7 +130,7 @@ export class CatalogueWindowComponent implements OnInit, AfterViewInit {
     }
     else {
       this.categoryService.saveCatalog(element);
-      this.router.navigate([`catalogue/${element.path}`]).then();
+      this.router.navigate([`catalogue/${element.url}`]).then();
       this.dialogRef.close();
     }
   }

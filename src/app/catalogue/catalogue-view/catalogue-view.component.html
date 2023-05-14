@@ -1,53 +1,10 @@
-<main class="container">
-  <h2 class="title">{{catalog?.name}}</h2>
-  <div class="row no-gutters justify-content-between mb-4 filter">
-    <div class="filter-element">
-      <img src="https://res.cloudinary.com/lmru-test/image/upload/f_auto,q_auto,w_56,h_56,c_pad,b_white,d_photoiscoming.pngupload/elbrus/images/landing-images/04/ushm-bolgarki/akkumulyatornye3.png">
-      <p>Аккумуляторные</p>
+<div class="container" *ngIf="catalog">
+  <div class="d-grid filter-grid gap-3" style="transition: all 1s cubic-bezier(0,0,.5,1); grid-template-columns: 320px auto;">
+    <div *ngIf="filter?.catalogOptions" class="filters">
+      <app-catalogue-filter [filter]="filter"></app-catalogue-filter>
     </div>
-    <div class="filter-element">
-      <img src="https://res.cloudinary.com/lmru-test/image/upload/f_auto,q_auto,w_56,h_56,c_pad,b_white,d_photoiscoming.pngupload/elbrus/images/landing-images/04/ushm-bolgarki/mini3.png">
-      <p>Мини-болгарки</p>
-    </div>
-    <div class="filter-element">
-      <img src="https://res.cloudinary.com/lmru-test/image/upload/f_auto,q_auto,w_56,h_56,c_pad,b_white,d_photoiscoming.pngupload/elbrus/images/landing-images/04/ushm-bolgarki/regulirovka3.png">
-      <p>С регулировкой оборотов</p>
-    </div>
-    <div class="filter-element">
-      <img src="https://res.cloudinary.com/lmru-test/image/upload/f_auto,q_auto,w_56,h_56,c_pad,b_white,d_photoiscoming.pngupload/elbrus/images/landing-images/04/ushm-bolgarki/plavnyi3.png">
-      <p>С плавным пуском</p>
-    </div>
-    <div class="filter-element">
-      <img src="https://res.cloudinary.com/lmru-test/image/upload/f_auto,q_auto,w_56,h_56,c_pad,b_white,d_photoiscoming.pngupload/elbrus/images/landing-images/04/ushm-bolgarki/bystozazhimnoy3.png">
-      <p>Быстрозажимные</p>
+    <div *ngIf="item?.goods">
+      <app-catalogue-items [item]="item"></app-catalogue-items>
     </div>
   </div>
-  <ng-container class="options" *ngIf="aggregations && catalogOptions">
-    <app-catalogue-filter [catalogOptions]="catalogOptions"
-                              [aggregations]="aggregations"
-                              (queryParams)="setQueryParams($event)">
-    </app-catalogue-filter>
-  </ng-container>
-  <div class="goods">
-    <mat-chip-list *ngIf="chips">
-      <mat-chip class="matChip"
-                *ngFor="let chip of chips"
-                (removed)="removeMatChip(chip)">
-        {{chip.view_name}}
-        <button matChipRemove>
-          <mat-icon>cancel</mat-icon>
-        </button>
-      </mat-chip>
-      <mat-chip class="matChipClear"
-                *ngIf="chips.length > 1"
-                (click)="removeAllMatChips()">
-        {{'Сбросить все'}}
-      </mat-chip>
-    </mat-chip-list>
-    <app-catalogue-items *ngIf="count && goods"
-                         [count]="count"
-                         [goods]="goods"
-                         (queryParams)="setQueryParams($event)">
-    </app-catalogue-items>
-  </div>
-</main>
+</div>

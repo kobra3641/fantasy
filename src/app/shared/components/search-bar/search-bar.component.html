@@ -1,7 +1,58 @@
-<main class="navbar container">
-  <a class="logo">FANTASY</a>
-  <input placeholder="Поиск товаров" class="searchbar">
-  <mat-icon mat-button (click)="closeDialog()" class="close-button">close</mat-icon>
+<!--<main class="navbar-not-main container" *ngIf="router.url != '/'">-->
+<!--  <a class="logo">FANTASY</a>-->
+<!--  <input placeholder="Поиск товаров" class="searchbar">-->
+<!--  <mat-icon mat-button (click)="closeDialog()" class="close-button">close</mat-icon>-->
+<!--  <div class="searchField">-->
+<!--    <p style="padding: 10px 0px; color: #b0b0b0">Товары</p>-->
+<!--    <div>-->
+<!--      <p class="searchFieldElement">Обои</p>-->
+<!--      <p class="searchFieldElement">Обои</p>-->
+<!--      <p class="searchFieldElement">Обои</p>-->
+<!--    </div>-->
+<!--    <p style="padding: 10px 0px; color: #b0b0b0">Услуги</p>-->
+<!--    <div>-->
+<!--      <p class="searchFieldElement">Обои</p>-->
+<!--      <p class="searchFieldElement">Обои</p>-->
+<!--      <p class="searchFieldElement">Обои</p>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</main>-->
+<!--<main class="navbar-main container" *ngIf="router.url == '/'">-->
+<!--  <div style="grid-area: navbar">-->
+<!--    <a class="logo">FANTASY</a>-->
+<!--    <mat-icon mat-button (click)="closeDialog()" class="close-button">close</mat-icon>-->
+<!--  </div>-->
+<!--  <div style="grid-area: main">-->
+<!--    <input placeholder="Поиск товаров" class="searchbar">-->
+<!--    <div class="searchField">-->
+<!--      <p style="padding: 10px 0px; color: #b0b0b0">Товары</p>-->
+<!--      <div>-->
+<!--        <p class="searchFieldElement">Обои</p>-->
+<!--        <p class="searchFieldElement">Обои</p>-->
+<!--        <p class="searchFieldElement">Обои</p>-->
+<!--      </div>-->
+<!--      <p style="padding: 10px 0px; color: #b0b0b0">Услуги</p>-->
+<!--      <div>-->
+<!--        <p class="searchFieldElement">Обои</p>-->
+<!--        <p class="searchFieldElement">Обои</p>-->
+<!--        <p class="searchFieldElement">Обои</p>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</main>-->
+<header class="navbar container">
+  <a class="logo d-flex gap-3 align-items-center">
+    <img src="../assets/images/logotype.png" class="h-100">
+    FANTASY
+  </a>
+  <mat-icon class="close-button"
+            mat-button
+            (click)="closeDialog()">
+    close
+  </mat-icon>
+</header>
+<main class="container d-flex flex-column">
+  <input placeholder="Поиск товаров" class="searchbar d-flex mb-3">
   <div class="searchField">
     <p style="padding: 10px 0px; color: #b0b0b0">Товары</p>
     <div>

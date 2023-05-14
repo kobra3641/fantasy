@@ -30,4 +30,8 @@ export class CategoryService {
   findByName(name: string | null): Observable<any> {
     return this.http.get(CATEGORY_API + 'findByName/' + name, httpOptions);
   }
+
+  findById(id: string | null): Observable<any> {
+    return this.http.get(CATEGORY_API + 'findById/' + id, httpOptions);
+  }
 }

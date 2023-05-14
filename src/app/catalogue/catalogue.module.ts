@@ -6,23 +6,30 @@ import { CatalogueItemsComponent } from './catalogue-items/catalogue-items.compo
 import {CatalogueRoutingModule} from "./catalogue-routing.module";
 import { CatalogueComponent } from './catalogue.component';
 import {SharedModule} from "../shared/shared.module";
+import { CatalogueItemEditComponent } from './catalogue-item-edit/catalogue-item-edit.component';
+import {MatCardModule} from "@angular/material/card";
+import {MatDividerModule} from "@angular/material/divider";
+import {MatExpansionModule} from "@angular/material/expansion";
+import { CatalogueEditComponent } from './catalogue-edit/catalogue-edit.component';
+import { CatalogueFilterEditComponent } from './catalogue-filter-edit/catalogue-filter-edit.component';
 
 @NgModule({
   declarations: [
     CatalogueViewComponent,
     CatalogueFilterComponent,
     CatalogueItemsComponent,
-    CatalogueComponent
+    CatalogueComponent,
+    CatalogueItemEditComponent,
+    CatalogueEditComponent,
+    CatalogueFilterEditComponent,
   ],
   imports: [
     CoreModule,
     SharedModule,
-    CatalogueRoutingModule
-  ],
-  exports: [
-    CatalogueViewComponent,
-    CatalogueFilterComponent,
-    CatalogueItemsComponent
+    CatalogueRoutingModule,
+    MatCardModule,
+    MatDividerModule,
+    MatExpansionModule
   ]
 })
 export class CatalogueModule { }

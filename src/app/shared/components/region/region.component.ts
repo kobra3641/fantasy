@@ -12,6 +12,7 @@ export class RegionComponent implements OnInit {
 
   public regionRusName: string = '';
   public regions: any;
+  public currentRegion = this.getRegion();
 
   constructor(
     private region: Regions,
@@ -24,9 +25,13 @@ export class RegionComponent implements OnInit {
     this.regions = this.region.regions;
   }
 
+  public getRegion() {
+    return JSON.parse(localStorage.getItem('region') || '')
+  }
+
   public openRegion(region: any) {
     this.storageService.setRegion(region);
-    this.closeDialog();
+    location.reload();
   }
 
   public closeDialog(): void {

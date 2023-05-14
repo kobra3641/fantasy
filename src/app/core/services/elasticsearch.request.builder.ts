@@ -18,6 +18,11 @@ export class ElasticsearchRequestBuilder {
     return this;
   }
 
+  public addPostFilter(postFilter: any) {
+    this._elasticsearchRequest['post_filter'] = postFilter;
+    return this;
+  }
+
   public build = (): ElasticRequest => { return this._elasticsearchRequest };
 
 }

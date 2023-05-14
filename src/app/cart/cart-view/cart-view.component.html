@@ -1,0 +1,27 @@
+<div class="container">
+  <p class="title my-4">Корзина</p>
+  <div class="cart-container w-100 gap-3">
+    <div class="cart-item-container d-flex gap-3 flex-column">
+      <div class="cart-item" *ngFor="let item of [1,2]">
+        <img src="assets/images/product-new.svg">
+        <p class="cart-item__title">Lorem ipsum dolor sit amet, consectetur</p>
+        <p class="cart-item-cost">1 500 <small>₽</small></p>
+        <div class="d-flex align-items-center gap-2 cart-item-remove-button">
+          <img src="assets/images/delete__40.svg" class="">
+          <a class="cart-item-remove">Удалить</a>
+        </div>
+        <div class="cart-item-input d-flex justify-content-between">
+          <a class="change-amount-button d-flex justify-content-center align-items-center">-</a>
+          <input class="change-amount-input" type="number" min="0" max="25" value="1">
+          <a class="change-amount-button d-flex justify-content-center align-items-center">+</a>
+        </div>
+      </div>
+    </div>
+    <div class="cart-container-cost d-flex flex-column gap-3">
+      <div class="d-flex justify-content-between">
+        <p class="cart-item__title">Итого</p>
+        <p class="cart-item__title">3000₽</p>
+      </div>
+      <a class="cart-button d-flex justify-content-center w-100">Оформить доставку</a>
+    </div>
+  </div>

@@ -1,54 +1,99 @@
-<main class="container">
-  <h2 class="title">
-    {{'Магазины'}}
-  </h2>
-  <div class="shops"
-       style="border-radius: 5px">
-    <div class="shop-list-first">
-      <div>
-        <p class="bigNumber">
-          {{totalShops.length}}
-        </p>
-        <p class="smallTextUnderNumber">
-          {{declOfNum(totalShops.length, ['магазин', 'магазина', 'магазинов'])}}
-        </p>
-      </div>
-      <p class="smallLetter"><span>-</span> в <span>-</span></p>
-      <div>
-        <p class="bigNumber">
-          {{allRegions}}
-        </p>
-        <p class="smallTextUnderNumber">
-          {{declOfNum(allRegions, ['городе', 'городах', 'городах'])}} России
-        </p>
-      </div>
-    </div>
-    <div class="shop-list-second">
-      <div class="region-text">
-        <mat-icon>location_on</mat-icon>
-        <p>
-          {{'Ваш регион: '}}
-        </p>
-      </div>
-      <a>
-        {{region.rus_name}}
-      </a>
-      <p style="font-size: 24px">
-        {{currentRegionShops.length + ' ' + declOfNum(currentRegionShops.length, ['магазин', 'магазина', 'магазинов'])}}
-      </p>
-    </div>
-    <div class="shopList">
-      <div class="shop-list-element"
-           *ngFor="let shop of currentRegionShops">
-        <p class="shop-element-title">{{shop?.about?.title}}</p>
-        <p class="shop-element-address">{{shop?.about?.address}}</p>
-        <p class="shop-element-openTime">
-          <mat-icon>access_time</mat-icon>
-          {{shop?.about?.openTime[0] + '-' + shop?.about?.openTime[1]}}
-        </p>
-      </div>
-    </div>
-    <div id="map" style="padding: 0; grid-area: map"></div>
-  </div>
+<!--<div class="background-map"></div>-->
+<!--<main class="container">-->
+<!--  <h2 class="mb-4 text-center big-text">Магазины</h2>-->
+<!--  <div class="shops"-->
+<!--       style="border-radius: 18px; overflow: auto; box-shadow: 2px 4px 12px rgba(0,0,0,.08)!important">-->
+<!--    <div class="shop-list-first">-->
+<!--      <div>-->
+<!--        <p class="bigNumber">-->
+<!--          {{totalShops.length}}-->
+<!--        </p>-->
+<!--        <p class="smallTextUnderNumber">-->
+<!--          {{declOfNum(totalShops.length, ['магазин', 'магазина', 'магазинов'])}}-->
+<!--        </p>-->
+<!--      </div>-->
+<!--      <p class="smallLetter"><span>-</span> в <span>-</span></p>-->
+<!--      <div>-->
+<!--        <p class="bigNumber">-->
+<!--          {{allRegions}}-->
+<!--        </p>-->
+<!--        <p class="smallTextUnderNumber">-->
+<!--          {{declOfNum(allRegions, ['городе', 'городах', 'городах'])}} России-->
+<!--        </p>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="shop-list-second">-->
+<!--      <div class="region-text">-->
+<!--        <mat-icon>location_on</mat-icon>-->
+<!--        <p>-->
+<!--          {{'Ваш регион: '}}-->
+<!--        </p>-->
+<!--      </div>-->
+<!--      <a>-->
+<!--        {{region.rus_name}}-->
+<!--      </a>-->
+<!--      <p style="font-size: 24px">-->
+<!--        {{currentRegionShops.length + ' ' + declOfNum(currentRegionShops.length, ['магазин', 'магазина', 'магазинов'])}}-->
+<!--      </p>-->
+<!--    </div>-->
+<!--    <div class="shopList">-->
+<!--&lt;!&ndash;      <div class="shop-list-element"&ndash;&gt;-->
+<!--&lt;!&ndash;           *ngFor="let shop of currentRegionShops">&ndash;&gt;-->
+<!--&lt;!&ndash;        <p class="shop-element-title">{{shop?.about?.title}}</p>&ndash;&gt;-->
+<!--&lt;!&ndash;        <p class="shop-element-address">{{shop?.about?.address}}</p>&ndash;&gt;-->
+<!--&lt;!&ndash;        <p class="shop-element-openTime">&ndash;&gt;-->
+<!--&lt;!&ndash;          <mat-icon>access_time</mat-icon>&ndash;&gt;-->
+<!--&lt;!&ndash;          {{shop?.about?.openTime[0] + '-' + shop?.about?.openTime[1]}}&ndash;&gt;-->
+<!--&lt;!&ndash;        </p>&ndash;&gt;-->
+<!--&lt;!&ndash;      </div>&ndash;&gt;-->
+<!--      <mat-card class="example-card m-3" *ngFor="let shop of currentRegionShops">-->
+<!--        <mat-card-title><h5>{{shop?.about?.title}}</h5></mat-card-title>-->
+<!--        <mat-card-subtitle><small>{{shop?.about?.address}}</small></mat-card-subtitle>-->
+<!--        <mat-card-content class="d-flex gap-1 justify-content-center">-->
+<!--          <mat-icon>access_time</mat-icon>-->
+<!--          <p>{{shop?.about?.openTime[0] + '-' + shop?.about?.openTime[1]}}</p>-->
+<!--        </mat-card-content>-->
+<!--&lt;!&ndash;        <mat-card-actions>&ndash;&gt;-->
+<!--&lt;!&ndash;          <button mat-button>LIKE</button>&ndash;&gt;-->
+<!--&lt;!&ndash;          <button mat-button>SHARE</button>&ndash;&gt;-->
+<!--&lt;!&ndash;        </mat-card-actions>&ndash;&gt;-->
+<!--      </mat-card>-->
 
+<!--    </div>-->
+<!--    <div id="map" style="padding: 0; grid-area: map"></div>-->
+<!--  </div>-->
+
+<!--</main>-->
+
+
+<!--<mat-card class="example-card m-3" *ngFor="let shop of currentRegionShops">-->
+<!--  <mat-card-title><h5>{{shop?.about?.title}}</h5></mat-card-title>-->
+<!--  <mat-card-subtitle><small>{{shop?.about?.address}}</small></mat-card-subtitle>-->
+<!--  <mat-card-content class="d-flex gap-1 justify-content-center">-->
+<!--    <mat-icon>access_time</mat-icon>-->
+<!--    <p>{{shop?.about?.openTime[0] + '-' + shop?.about?.openTime[1]}}</p>-->
+<!--  </mat-card-content>-->
+<!--  &lt;!&ndash;        <mat-card-actions>&ndash;&gt;-->
+<!--  &lt;!&ndash;          <button mat-button>LIKE</button>&ndash;&gt;-->
+<!--  &lt;!&ndash;          <button mat-button>SHARE</button>&ndash;&gt;-->
+<!--  &lt;!&ndash;        </mat-card-actions>&ndash;&gt;-->
+<!--</mat-card>-->
+
+<main class="container">
+  <p class="title my-4">Магазины</p>
+  <div class="d-grid shop-container">
+    <div class="d-flex flex-column shop-list">
+      <a class="shop-list-region">{{region.rus_name}}</a>
+      <hr>
+      <ul>
+        <li *ngFor="let shop of currentRegionShops">
+          <p class="shop-list-item-title">{{shop?.about?.title?.replace('Леруа Мерлен', '')}}</p>
+          <p class="shop-list-item-about">{{shop?.about?.address}}</p>
+          <hr>
+        </li>
+
+      </ul>
+    </div>
+    <div id="map" style="padding: 0;"></div>
+  </div>
 </main>

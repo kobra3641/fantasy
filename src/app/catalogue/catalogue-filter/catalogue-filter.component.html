@@ -1,22 +1,86 @@
-<div class="options-block"
-     *ngFor="let catalogOption of catalogOptions">
-  <p class="options-block-title">
-    {{catalogOption.rus_name}}
-  </p>
-  <div [ngClass]="i>=5?'hidden':'show'"
-       id="{{catalogOption.name}}"
-       *ngFor="let optionValue of catalogOption.data; index as i">
-    <mat-checkbox color="primary"
-                  checked="{{optionValue.active}}"
-                  disabled="{{!optionValue.count}}"
-                  (change)="setQueryParams(catalogOption, optionValue)">
-      <p>
-        {{prepareOptionValueName(optionValue)}}
-      </p>
-    </mat-checkbox>
-  </div>
-  <a *ngIf="catalogOption.data?.length >= 5"
-     (click)="showMore(catalogOption, $event.target)">
-    {{'Показать еще'}}
-  </a>
+<div class="catalogue-filter-sidebar">
+  <ng-container *ngFor="let catalogOption of filter?.catalogOptions">
+    <ng-container [ngSwitch]="catalogOption.type">
+      <ng-container *ngSwitchCase="'boolean'">
+        <details class="catalogue-filter-sidebar-element" [open]="isExpanded(catalogOption)">
+          <summary class="d-flex justify-content-between align-items-center cfs-summary">
+            <p>{{catalogOption.rus_name}}</p>
+            <img src="assets/images/arrow_list_next_s.svg" alt="arrow">
+          </summary>
+          <div class="d-flex gap-3 element-list">
+            <div *ngFor="let optionValue of catalogOption?.data;  index as i ">
+              <input type="checkbox"
+                     class="catalogue-filter-sidebar-checkbox"
+                     [id]="catalogOption.en_name + '_' + i"
+                     [name]="optionValue.name"
+                     [value]="optionValue.value"
+                     [checked]="optionValue.active"
+                     [disabled]="!optionValue.count"
+                     (change)="setQueryParamsByCheck(catalogOption, optionValue)">
+              <label [for]="catalogOption.en_name + '_' + i"
+                     [class.cfsc-disabled]="!optionValue.count">
+                {{prepareOptionValueName(optionValue)}}
+              </label>
+            </div>
+          </div>
+          </details>
+      </ng-container>
+      <ng-container *ngSwitchCase="'number'">
+        <details class="catalogue-filter-sidebar-element" [open]="getCurrentMinValue(catalogOption) || getCurrentMaxValue(catalogOption)">
+          <summary class="d-flex justify-content-between align-items-center cfs-summary">
+            <p>{{catalogOption.rus_name}}</p>
+            <img src="assets/images/arrow_list_next_s.svg" alt="arrow">
+          </summary>
+          <div class="d-flex flex-column gap-1 element-list">
+            <div class="d-flex gap-3">
+              <input id="rangeFrom"
+                     type="number"
+                     placeholder="{{'от ' + getMinValue(catalogOption)}}"
+                     class="catalogue-filter-sidebar-number"
+                     min="{{getMinValue(catalogOption)}}"
+                     max="{{getMaxValue(catalogOption)}}"
+                     [value]="getCurrentMinValue(catalogOption)"
+                     (change)="setQueryParamsByRange(catalogOption, $event.target)">
+              <input id="rangeBy"
+                     type="number"
+                     placeholder="{{'до ' + getMaxValue(catalogOption)}}"
+                     class="catalogue-filter-sidebar-number"
+                     min="{{getMinValue(catalogOption)}}"
+                     max="{{getMaxValue(catalogOption)}}"
+                     [value]="getCurrentMaxValue(catalogOption)"
+                     (change)="setQueryParamsByRange(catalogOption, $event.target)">
+            </div>
+          </div>
+        </details>
+      </ng-container>
+      <ng-container *ngSwitchCase="'array'">
+        <details class="catalogue-filter-sidebar-element" [open]="isExpanded(catalogOption)">
+          <summary class="d-flex justify-content-between align-items-center cfs-summary">
+            <p>{{catalogOption.rus_name}}</p>
+            <img src="assets/images/arrow_list_next_s.svg" alt="arrow">
+          </summary>
+          <div class="d-flex flex-column element-list element-list-array">
+            <div *ngFor="let optionValue of catalogOption?.data; index as i">
+              <input type="checkbox"
+                     class="catalogue-filter-sidebar-checkbox"
+                     [id]="catalogOption.en_name + '_' + i"
+                     [name]="optionValue.name"
+                     [value]="optionValue.value"
+                     [checked]="optionValue.active"
+                     [disabled]="!optionValue.count"
+                     (change)="setQueryParamsByCheck(catalogOption, optionValue)">
+              <label [for]="catalogOption.en_name + '_' + i"
+                     [class.cfsc-disabled]="!optionValue.count">
+                {{prepareOptionValueName(optionValue)}}
+              </label>
+            </div>
+          </div>
+        </details>
+      </ng-container>
+      <ng-container *ngSwitchDefault>
+        <b>{{[catalogOption.type, catalogOption.schema_name]}}</b>
+        <br>
+      </ng-container>
+    </ng-container>
+  </ng-container>
 </div>

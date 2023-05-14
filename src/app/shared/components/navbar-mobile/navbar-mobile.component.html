@@ -1,0 +1,31 @@
+<div class="navbarMobile d-flex flex-column p-3 gap-3 h-100 justify-content-center position-relative">
+  <span class="material-symbols-rounded position-absolute top-0 close-button" (click)="onClose()">close</span>
+  <a (click)="openCatalogueDialog()" class="on-hover d-flex align-items-center gap-1">
+    <span class="material-symbols-outlined">chrome_reader_mode</span>
+    Каталог
+  </a>
+  <hr>
+  <a (click)="openRegionDialog()" class="on-hover d-flex align-items-center gap-1">
+    <span class="material-symbols-outlined">location_on</span>
+    {{region.rus_name}}
+  </a>
+  <a class="on-hover d-flex align-items-center gap-1"
+     (click)="openShopsDialog()">
+    <span class="material-symbols-outlined">storefront</span>
+    Магазины
+  </a>
+  <hr>
+  <a class="on-hover d-flex align-items-center gap-1">
+    <span class="material-symbols-outlined">list_alt</span>
+    Список покупок
+  </a>
+  <a class="on-hover d-flex align-items-center gap-1">
+    <span class="material-symbols-outlined">compare_arrows</span>
+    Сравнение
+  </a>
+  <hr>
+  <a class="on-hover d-flex align-items-center gap-1">
+    <span class="material-symbols-outlined">exit_to_app</span>
+    Войти
+  </a>
+</div>

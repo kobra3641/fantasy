@@ -1,64 +1,47 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges} from '@angular/core';
 import {Hit} from "../../core/models/elastic.response";
-import {MatDialog} from "@angular/material/dialog";
 import {ActivatedRoute, Router} from "@angular/router";
+import {Item} from "../models/item";
+import {QueryParamItem} from "../models/query.param.item";
+import {QueryParametersService} from "../../core/services/query.parameters.service";
 
 @Component({
   selector: 'app-catalogue-items',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './catalogue-items.component.html',
   styleUrls: ['../catalogue.component.css']
 })
-export class CatalogueItemsComponent implements OnInit {
+export class CatalogueItemsComponent implements OnChanges {
 
-  @Input() count: any;
-  @Input() goods: Hit[] = [];
-  @Output() queryParams = new EventEmitter<any>();
-  public ratingArrow: boolean = true;
-  public ratingSelect: any;
-  public goodsView: string | null | undefined;
-  public page: any = 1;
-  public sortingElements: any[] = [
-    {name: 'Цена по возрастанию', value: 'asc'},
-    {name: 'Цена по убыванию', value: 'desc'},
-    {name: 'Рекомендуем', value: 'recommend'},
-    {name: 'Рейтинг', value: 'rate'}
-  ];
+  @Input() item: Item;
+  public page: number = 1;
+  public pages: number;
 
   constructor(
-    private dialog: MatDialog,
     private activatedRoute: ActivatedRoute,
-    private router: Router
-  ) {
+    private router: Router,
+    private queryParamsService: QueryParametersService
+  ) {}
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.init(this.item.count);
   }
 
-  ngOnInit(): void {
-    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+  private init(count: number): void {
+    this.pages = Math.ceil(count / 30);
     if (this.activatedRoute.snapshot.queryParamMap.get('page'))
-      this.page = this.activatedRoute.snapshot.queryParamMap.get('page');
-    if (localStorage.getItem('goodsView'))
-      this.goodsView = localStorage.getItem('goodsView');
-    else
-      this.goodsView = 'list';
-    if (localStorage.getItem('goodsSort'))
-      this.ratingSelect = localStorage.getItem('goodsSort');
-    else
-      this.ratingSelect = 'Рекомендуем';
+      this.page = Number(this.activatedRoute.snapshot.queryParamMap.get('page'));
   }
 
-  public changeToggleGroup(value: any): void {
-    this.goodsView = value;
-    localStorage.setItem('goodsView', value);
+  public handlePageChange(page: number): void {
+    this.page = page;
+    const queryParamItem: QueryParamItem = {property: 'page', value: page};
+    const queryParams: Record<any, any> = this.queryParamsService.updateQueryParams(this.activatedRoute.snapshot.queryParams, queryParamItem);
+    this.router.navigate([], {queryParams}).then();
   }
 
-  public ratingSort(event: any): void {
-    this.ratingSelect = event.title;
-    localStorage.setItem('goodsSort', event.title);
-    this.queryParams.emit({optionName: 'sort', optionValue: event.value})
-  }
-
-  public handlePageChange(event: any) {
-    this.page = event;
-    this.queryParams.emit({optionName: 'page', optionValue: event})
+  public openGood(element: Hit): void {
+    this.router.navigate(['product/' + element._id]).then();
   }
 
 }

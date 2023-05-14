@@ -5,7 +5,7 @@ export interface ElasticResponse {
     total: {
       value: number
     };
-    hits?: Hit[]
+    hits: Hit[]
   },
   aggregations?: any;
 }

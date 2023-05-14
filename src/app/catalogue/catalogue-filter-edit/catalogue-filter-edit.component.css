@@ -1,0 +1,29 @@
+.title {
+  font-weight: 500;
+  font-size: 2rem;
+}
+.catalogue-filter-edit-return {
+  cursor: pointer;
+}
+.catalogue-filter-edit-chip-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.catalogue-filter-edit-chip {
+  border-radius: 8px;
+  padding: 6px 16px;
+  border: 1px solid rgba(0, 16, 61, 0.12);
+}
+.catalogue-filter-edit-button {
+  display: flex;
+  border-radius: 8px;
+  padding: 6px 16px;
+  border: 1px solid rgba(0, 16, 61, 0.12);
+  font-weight: 500;
+  cursor: pointer;
+}
+.catalogue-filter-edit-button:hover {
+  background: rgba(0, 16, 61, 0.04);
+}

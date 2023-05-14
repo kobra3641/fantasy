@@ -1,0 +1,8 @@
+hr {
+  margin: 0!important;
+}
+.close-button {
+  cursor: pointer;
+  right: 0;
+  margin: 1rem;
+}

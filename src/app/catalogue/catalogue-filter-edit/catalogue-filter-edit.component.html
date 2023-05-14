@@ -1,0 +1,79 @@
+<form class="container gap-2" *ngIf="catalog">
+  <div class="d-flex justify-content-between align-items-center">
+    <p class="title my-4">{{catalog.name}}</p>
+    <div class="d-flex align-items-center gap-1 catalogue-filter-edit-return" (click)="returnBack()">
+      <img src="assets/images/arrow-previous-long.svg" alt="arrow">
+      <p>К редактированию каталогов</p>
+    </div>
+  </div>
+  <div class="gap-2 mb-4 catalogue-filter-edit-chip-list">
+    <div class="catalogue-filter-edit-chip" *ngFor="let catalogOption of catalogOptions">
+      {{catalogOption.viewValue}}
+    </div>
+  </div>
+  <div class="d-flex">
+    <div class="align-items-center gap-2 catalogue-filter-edit-button" (click)="addOption()" [hidden]="isAdding">
+      <img src="assets/images/add.svg" alt="add">
+      <p>Добавить опцию для категории</p>
+    </div>
+  </div>
+  <div [hidden]="!isAdding">
+    <div class="row w-100">
+      <app-select [title]="'Варианты опций для категории'"
+                  [data]="currentCatalogOptions"
+                  (dataEvent)="changeElement($event)"
+                  [width]="'500px'">
+      </app-select>
+    </div>
+  </div>
+  <ng-container *ngIf="currentCatalogOption" [ngSwitch]="changeEnumType(currentType)">
+    <div class="row w-100">
+      <app-select [title]="'Выберите тип данных для опции'"
+                  [data]="types"
+                  (dataEvent)="changeType($event)"
+                  [width]="'500px'">
+      </app-select>
+    </div>
+    <div *ngSwitchCase="CatalogOptionTypeEnum.array">
+      <div class="row w-100">
+        <app-select [title]="'Выберите каталог'"
+                    [data]="schemaAndTableNames"
+                    (dataEvent)="changeSchema($event)"
+                    [width]="'500px'">
+        </app-select>
+      </div>
+      <div class="row w-100" *ngIf="currentSchema">
+        <app-select [title]="'Выберите таблицу каталога'"
+                    [data]="tableNames"
+                    (dataEvent)="changeTable($event)"
+                    [width]="'500px'">
+        </app-select>
+      </div>
+    </div>
+    <div *ngSwitchCase="CatalogOptionTypeEnum.number">
+      <div class="row w-100">
+        <app-select [title]="'Уточните тип данных'"
+                    [data]="numberTypes"
+                    [width]="'500px'"
+                    (dataEvent)="changeTable($event)">
+        </app-select>
+      </div>
+    </div>
+    <div *ngSwitchCase="CatalogOptionTypeEnum.text">
+      <div class="row w-100">
+        <app-select [title]="'Уточните тип данных'"
+                    [data]="textTypes"
+                    [width]="'500px'"
+                    (dataEvent)="changeTable($event)">
+        </app-select>
+      </div>
+    </div>
+    <div class="d-flex">
+      <a class="align-items-center gap-2 catalogue-filter-edit-button" (click)="save()">
+        <img src="assets/images/save.svg" alt="save">
+        <p>Сохранить</p>
+      </a>
+    </div>
+  </ng-container>
+</form>
+

@@ -1,0 +1,7 @@
+<div class="m-3">
+  <mat-icon mat-button (click)="closeDialog()" class="close-button">close</mat-icon>
+  <p>Изменение изображения</p>
+  <input type="file" (change)="changeImage($event.target)">
+  <br>
+  <button mat-button [mat-dialog-close]="resultat">Сохранить</button>
+</div>

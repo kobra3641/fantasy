@@ -1,49 +1,60 @@
-<mat-drawer-container [hasBackdrop]="true">
-  <header class="navbar container">
-    <mat-icon class="menuButton" (click)="drawer.toggle()" [ngClass]="{'test': true}">menu</mat-icon>
-    <a class="logo" href="./">FANTASY</a>
-    <a class="regions" (click)="true">{{region.rus_name}}<mat-icon>keyboard_arrow_down</mat-icon></a>
-    <a class="shops" (click)="router.navigate(['shop']).then()">Магазины</a>
-    <a (click)="true" *ngIf="router.url != '/'" class="catalog">Каталог</a>
-    <input value="Поиск товаров" *ngIf="router.url != '/'" class="searchbar" (click)="true" type="submit">
-    <a class="auth">Профиль</a>
-    <a class="basket">Корзина 1</a>
-  </header>
-  <mat-drawer #drawer mode="over">
-    <mat-icon mat-button (click)="drawer.toggle()">close</mat-icon>
-    <div>
-      <a (click)="drawer.toggle();" class="on-hover">
-        <mat-icon>clear_all</mat-icon>
-        Каталог
+<!--<header class="w-100 navbar-long">-->
+<!--  <div class="container h-100 d-grid justify-content-between align-items-center navbarBox">-->
+<!--    <a class="align-items-center menu" (click)="openNavbarMobileDialog()">-->
+<!--      <span class="material-symbols-outlined">menu</span>-->
+<!--    </a>-->
+<!--    <a class="d-flex flex-column align-items-center hive" href="./">-->
+<!--&lt;!&ndash;      <span class="material-symbols-outlined">hive</span>&ndash;&gt;-->
+<!--&lt;!&ndash;      <img src="assets/images/Logo-new.svg" height="21">&ndash;&gt;-->
+<!--      <p style="font-size: 24px; font-weight: bold; margin-bottom: -5px">DO</p>-->
+<!--      <p style="font-weight: 300;">FANTASY</p>-->
+<!--    </a>-->
+<!--    <div class="d-flex justify-content-around navbarText">-->
+<!--      <a class="on-hover" (click)="openRegionDialog()">-->
+<!--        {{region.rus_name}}-->
+<!--      </a>-->
+<!--      <a class="on-hover" (click)="openShops()">-->
+<!--        Магазины-->
+<!--      </a>-->
+<!--      <a class="on-hover" (click)="openCatalogueDialog()">-->
+<!--        Каталог-->
+<!--      </a>-->
+<!--    </div>-->
+<!--    <div class="d-flex gap-3 navbarText" style="margin-left: auto">-->
+<!--      <a class="on-hover d-flex align-items-center" (click)="openSearchBarDialog()" style="margin-left: auto">-->
+<!--        <span class="material-symbols-outlined" style="font-size: 20px!important;">search</span>-->
+<!--      </a>-->
+<!--      <a class="on-hover d-flex align-items-center gap-2">-->
+<!--        <span class="material-symbols-outlined" style="font-size: 20px!important;">shopping_cart</span>-->
+<!--&lt;!&ndash;        Корзина&ndash;&gt;-->
+<!--      </a>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</header>-->
+
+
+<header class="d-flex align-items-center header">
+  <div class="header-search-active" #darkness></div>
+  <div class="container d-flex align-items-center justify-content-between">
+    <img src="assets/images/menu.svg" class="header-mobile">
+    <div class="d-flex gap-1 align-items-center header-component" #elements>
+      <a class="logo" [routerLink]="['']">FANTASY</a>
+
+      <a class="header-item" (click)="openCatalogueDialog()">Каталог</a>
+      <a class="header-item" (click)="openShops()" [class.header-item-active]="router.url == '/shop'">Магазины</a>
+      <a class="d-flex align-items-center gap-1 header-item" (click)="openRegionDialog()">
+        <img src="assets/images/map_pin.svg">
+        <span>{{region.rus_name}}</span>
       </a>
-      <hr>
-      <a (click)="drawer.toggle();" class="on-hover">
-        <mat-icon> near_me</mat-icon>
-        {{region.rus_name}}
-      </a>
-      <a class="on-hover"
-         [routerLink]="['shop']"
-         (click)="drawer.toggle()">
-        <mat-icon>
-          terrain
-        </mat-icon>
-        Магазины
-      </a>
-      <hr>
-      <a class="on-hover">
-        <mat-icon>list_alt</mat-icon>
-        Список покупок
-      </a>
-      <a class="on-hover">
-        <mat-icon>notes</mat-icon>
-        Сравнение
-      </a>
-      <hr>
-      <a class="on-hover">
-        <mat-icon>exit_to_app</mat-icon>
-        Войти
+      <a class="header-item header-basket d-flex gap-2 justify-content-center align-items-center"
+         (click)="openCart()" [class.header-item-active]="router.url == '/basket'">
+        <span>Корзина</span>
+        <p class="basket-counter">0</p>
       </a>
     </div>
-  </mat-drawer>
-  <router-outlet></router-outlet>
-</mat-drawer-container>
+
+    <input class="header-search" placeholder="Поиск по сайту" #input (click)="openNewSearchbar(darkness, elements, input)">
+
+    <img src="assets/images/search-black.svg" class="header-mobile">
+  </div>
+</header>

@@ -7,6 +7,9 @@ import {CoreModule} from "../core/core.module";
 import {SearchBarComponent} from "./components/search-bar/search-bar.component";
 import {RegionComponent} from "./components/region/region.component";
 import {NavbarComponent} from "./components/navbar/navbar.component";
+import { NavbarMobileComponent } from './components/navbar-mobile/navbar-mobile.component';
+import { SelectComponent } from './components/select/select.component';
+import {SortByCountPipe} from "./pipes/sort-by-count.pipe";
 
 @NgModule({
   declarations: [
@@ -14,9 +17,12 @@ import {NavbarComponent} from "./components/navbar/navbar.component";
     MainHeaderComponent,
     MainFooterComponent,
     FilterRegionPipe,
+    SortByCountPipe,
     SearchBarComponent,
     RegionComponent,
-    NavbarComponent
+    NavbarComponent,
+    NavbarMobileComponent,
+    SelectComponent
   ],
   imports: [
     CoreModule
@@ -28,7 +34,9 @@ import {NavbarComponent} from "./components/navbar/navbar.component";
     FilterRegionPipe,
     SearchBarComponent,
     RegionComponent,
-    NavbarComponent
+    NavbarComponent,
+    SelectComponent,
+    SortByCountPipe
   ]
 })
 export class SharedModule { }

@@ -1,62 +1,113 @@
-import { Component, OnInit } from '@angular/core';
-import {MatDialog} from "@angular/material/dialog";
+import {Component, OnInit, Renderer2} from '@angular/core';
 import {Router} from "@angular/router";
-// import {CatalogComponent} from "../../../catalog/catalog.component";
-import {RegionComponent} from "../region/region.component";
-import {SearchBarComponent} from "../search-bar/search-bar.component";
+import {DialogManager} from "../../../core/services/dialog.manager";
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent {
 
   title = 'fantasy';
   region = this.getRegion();
 
+  regionDialog: any;
+  catalogueDialog: any;
 
-  constructor(private dialog: MatDialog, public router: Router){}
-
-
-  ngOnInit(): void {
+  constructor(public router: Router,
+              private renderer: Renderer2,
+              private dialogManager: DialogManager){
   }
-
-
-  // openCatalogDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
-  //   this.dialog.open(CatalogComponent, {
-  //     height: '100%',
-  //     width: '100%',
-  //     maxWidth: '100%',
-  //     enterAnimationDuration,
-  //     exitAnimationDuration,
-  //   });
-  // }
-  // openRegionDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
-  //   this.dialog.open(RegionComponent, {
-  //     height: '100%',
-  //     width: '100%',
-  //     maxWidth: '100%',
-  //     enterAnimationDuration,
-  //     exitAnimationDuration,
-  //   });
-  // }
-  // openSearchBarDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
-  //   this.dialog.open(SearchBarComponent, {
-  //     height: '100%',
-  //     width: '100%',
-  //     maxWidth: '100%',
-  //     enterAnimationDuration,
-  //     exitAnimationDuration,
-  //   });
-  // }
 
   public getRegion() {
     if (localStorage.getItem('region'))
-      console.log(localStorage.getItem('region'))
+      // console.log(localStorage.getItem('region'))
+    {}
     else
       localStorage.setItem('region', JSON.stringify({"name":"moscow","rus_name":"Москва, Московская область","coords":[55.755864,37.617698]}))
     return JSON.parse(localStorage.getItem('region') || '')
   }
 
+  public openNavbarMobileDialog(): void {
+    if (this.regionDialog) {
+      this.regionDialog.close();
+    }
+    if (this.catalogueDialog) {
+      this.catalogueDialog.close();
+    }
+    this.dialogManager.openNavbarMobileDialog();
+  }
+
+  public openCatalogueDialog(): void {
+    if (this.regionDialog) {
+      this.regionDialog.close();
+    }
+    if (this.catalogueDialog) {
+      this.catalogueDialog.close();
+    }
+    this.catalogueDialog = this.dialogManager.openCatalogueDialog();
+  }
+
+  public openRegionDialog(): void {
+    if (this.regionDialog) {
+      this.regionDialog.close();
+    }
+    if (this.catalogueDialog) {
+      this.catalogueDialog.close();
+    }
+    this.regionDialog = this.dialogManager.openRegionDialog();
+    // if (!this.dialogOpen) {
+    //   this.regionDialog = this.dialogManager.openRegionDialog();
+    //   this.regionDialog.afterClosed().subscribe(()=>{
+    //     this.dialogOpen = !this.dialogOpen
+    //   })
+    //   this.dialogOpen = !this.dialogOpen
+    // }
+
+  }
+
+  public openSearchBarDialog(): void {
+    if (this.regionDialog) {
+      this.regionDialog.close();
+    }
+    if (this.catalogueDialog) {
+      this.catalogueDialog.close();
+    }
+    this.dialogManager.openSearchBarDialog();
+  }
+
+  public openShops(): void {
+    if (this.regionDialog) {
+      this.regionDialog.close();
+    }
+    if (this.catalogueDialog) {
+      this.catalogueDialog.close();
+    }
+    this.router.navigate(['shop']).then();
+  }
+
+
+  public openCart(): void {
+    if (this.regionDialog) {
+      this.regionDialog.close();
+    }
+    if (this.catalogueDialog) {
+      this.catalogueDialog.close();
+    }
+    this.router.navigate(['basket']).then();
+  }
+
+
+  public openNewSearchbar(darkness: HTMLDivElement, elements: HTMLDivElement, input: HTMLInputElement) {
+    darkness.style.visibility = 'visible';
+    darkness.style.opacity = '1';
+
+    elements.style.width = '0';
+    elements.style.opacity = '0';
+
+    input.style.width = '100%';
+    console.log(input)
+    // disp.classList.add('header-component-disable')
+  }
 }

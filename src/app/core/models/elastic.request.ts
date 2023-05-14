@@ -3,3 +3,9 @@ export interface ElasticRequest {
   query?: any,
   aggs?: any
 }
+
+export interface Filter {
+  bool: {
+    filter: any[];
+  }
+}

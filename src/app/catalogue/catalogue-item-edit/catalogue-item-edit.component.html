@@ -1,0 +1,94 @@
+<main class="container">
+  <div *ngIf="goodData">
+    <form [formGroup]="form" (ngSubmit)="submitForm()">
+      <mat-card class="section p-5 d-flex align-items-center mb-3 outline">
+        <div>
+          <a class="title on-hover mb-3"
+             (click)="returnBack()">
+            <span class="material-symbols-rounded">arrow_back_ios</span>
+            <h2>{{hits[0]["_source"]["name"]}}</h2>
+          </a>
+          <button mat-stroked-button type="submit">Сохранить</button>
+        </div>
+      </mat-card>
+      <div class="d-grid justify-content-between options_list">
+        <div *ngFor="let catalogOption of catalogOptions" [ngSwitch]="catalogOption.type">
+          <ng-container *ngSwitchCase="'array'">
+            <mat-form-field appearance="outline" id="{{catalogOption.name}}">
+              <mat-label>{{catalogOption.rus_name}}</mat-label>
+              <mat-select [formControlName]="catalogOption.name">
+                <mat-option value="{{matOption.id}}" *ngFor="let matOption of catalogOption.data">{{matOption.name}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </ng-container>
+
+          <ng-container *ngSwitchCase="'boolean'">
+            <mat-form-field appearance="outline" >
+              <mat-label>{{catalogOption.rus_name}}</mat-label>
+              <mat-select [formControlName]="catalogOption.name">
+                <mat-option value="{{matOption.value}}" *ngFor="let matOption of catalogOption.data">{{matOption.name}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </ng-container>
+
+          <div *ngSwitchDefault>
+            <mat-form-field appearance="outline">
+              <mat-label>{{catalogOption.rus_name}}</mat-label>
+              <input matInput id="{{catalogOption.name}}">
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+<!--      <button mat-stroked-button type="submit">submit</button>-->
+    </form>
+  </div>
+<!--      <img src="../../assets/images/product-new-selected.svg" class="w-100">-->
+<!--      <div class="d-grid align-items-center" style="grid-template-columns: auto repeat(5, 1fr) auto">-->
+<!--        <mat-icon>keyboard_arrow_left</mat-icon>-->
+<!--        <img src="../../assets/images/product-new.svg" class="w-75 m-auto">-->
+<!--        <img src="../../assets/images/product-new.svg" class="w-75 m-auto">-->
+<!--        <img src="../../assets/images/product-new.svg" class="w-75 m-auto">-->
+<!--        <img src="../../assets/images/product-new.svg" class="w-75 m-auto">-->
+<!--        <img src="../../assets/images/product-new.svg" class="w-75 m-auto">-->
+<!--        <mat-icon>keyboard_arrow_right</mat-icon>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+
+
+
+
+<!--  <form *ngIf="goodData" [formGroup]="form" (ngSubmit)="submitForm()">-->
+<!--    <div class="row g-0">-->
+<!--      <div *ngFor="let catalogOption of catalogOptions" [ngSwitch]="catalogOption.type" class="col-md-6">-->
+<!--        <ng-container *ngSwitchCase="'array'">-->
+<!--          <mat-form-field appearance="outline" id="{{catalogOption.name}}">-->
+<!--            <mat-label>{{catalogOption.rus_name}}</mat-label>-->
+<!--            <mat-select [formControlName]="catalogOption.name">-->
+<!--              <mat-option value="{{matOption.id}}" *ngFor="let matOption of catalogOption.data">{{matOption.name}}</mat-option>-->
+<!--            </mat-select>-->
+<!--          </mat-form-field>-->
+<!--        </ng-container>-->
+
+<!--        <ng-container *ngSwitchCase="'boolean'">-->
+<!--          <mat-form-field appearance="outline" >-->
+<!--            <mat-label>{{catalogOption.rus_name}}</mat-label>-->
+<!--            <mat-select [formControlName]="catalogOption.name">-->
+<!--              <mat-option value="{{matOption.value}}" *ngFor="let matOption of catalogOption.data">{{matOption.name}}</mat-option>-->
+<!--            </mat-select>-->
+<!--          </mat-form-field>-->
+<!--        </ng-container>-->
+
+<!--        <div *ngSwitchDefault>-->
+<!--          <mat-form-field appearance="outline">-->
+<!--            <mat-label>{{catalogOption.rus_name}}</mat-label>-->
+<!--            <input matInput id="{{catalogOption.name}}">-->
+<!--          </mat-form-field>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+
+
+<!--    <button mat-stroked-button type="submit">submit</button>-->
+<!--  </form>-->
+</main>

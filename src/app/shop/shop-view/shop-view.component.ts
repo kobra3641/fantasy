@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 import {Regions} from "../../core/configurations/regions";
 import {StorageService} from "../../core/services/storage.service";
 import {Subscription} from "rxjs";
+import {Title} from "@angular/platform-browser";
 
 declare var ymaps:any;
 
@@ -23,7 +24,8 @@ export class ShopViewComponent implements OnInit, OnDestroy {
 
   constructor(
     private regions: Regions,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private titleService: Title
   ) {
     this.totalShops = regions.regions;
     this.allRegions = regions.regions.length;
@@ -39,6 +41,8 @@ export class ShopViewComponent implements OnInit, OnDestroy {
       })
     );
     this.currentRegionShops = this.regionPoints.filter((item: any) => item.region == this.region.name);
+
+    this.titleService.setTitle("Магазины");
 
     ymaps.ready().then(() => {
       this.map = new ymaps.Map('map', {

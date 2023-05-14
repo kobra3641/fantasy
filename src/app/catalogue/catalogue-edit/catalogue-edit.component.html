@@ -1,0 +1,214 @@
+<!--<ng-container *ngIf="viewCollection">-->
+<!--  <div class="container">-->
+
+<!--&lt;!&ndash;    <div class="d-flex justify-content-between mt-5 mb-3 align-items-center catalogue-title">&ndash;&gt;-->
+<!--&lt;!&ndash;      <h2 class="">Редактирование каталогов</h2>&ndash;&gt;-->
+
+<!--&lt;!&ndash;    </div>&ndash;&gt;-->
+<!--    <p class="title my-4">Редактирование каталогов</p>-->
+<!--    <div class="d-grid" style="grid-template-columns: repeat(3, 1fr); grid-column-gap: 1rem">-->
+
+<!--      <div class="d-flex flex-column">-->
+<!--        <div class="element d-flex align-items-center first-element"-->
+<!--             *ngFor="let element of viewCollection"-->
+<!--             [ngClass]="secondCollection.length > 0?'element-disable':''"-->
+<!--             [class.element-active]="element == secondElement">-->
+
+<!--          <input class="element-input" [value]="element.name" [readonly]="element != elementEdit" #firstElementInput>-->
+
+<!--          <div class="d-flex gap-1" style="margin-left: auto">-->
+
+<!--            <div class="d-flex gap-1" *ngIf="element == elementEdit">-->
+<!--              <span class="material-symbols-rounded" (click)="closeEditSelectedElement(firstElementInput)">undo</span>-->
+<!--              <span class="material-symbols-rounded">check</span>-->
+<!--            </div>-->
+<!--            <div class="d-flex gap-1" *ngIf="!elementEdit">-->
+<!--              <span class="material-symbols-rounded element-add"-->
+<!--                    (click)="secondCollection.length == 0?openNewCollection(element):editSelectedElement(element)">-->
+<!--                {{element == secondElement?'edit':'arrow_circle_right'}}-->
+<!--              </span>-->
+<!--              <span class="material-symbols-rounded element-remove"-->
+<!--                    *ngIf="secondCollection.length > 0"-->
+<!--                    (click)="removeAllCollections()">-->
+<!--                arrow_circle_left-->
+<!--              </span>-->
+<!--            </div>-->
+
+<!--          </div>-->
+
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <div class="d-flex flex-column" *ngIf="secondCollection.length > 0">-->
+<!--        <div class="element d-flex align-items-center second-element"-->
+<!--             *ngFor="let element of secondCollection"-->
+<!--             [ngClass]="thirdCollection.length > 0?'element-disable':''"-->
+<!--             [class.element-active]="element == thirdElement">-->
+<!--          <input class="element-input"-->
+<!--                 [value]="element.name"-->
+<!--                 [readonly]="element != elementEdit" #secondElementInput>-->
+<!--          <div class="d-flex gap-1" style="margin-left: auto">-->
+
+<!--            <div class="d-flex gap-1" *ngIf="element == elementEdit">-->
+<!--              <span class="material-symbols-rounded" (click)="closeEditSelectedElement(secondElementInput)">undo</span>-->
+<!--              <span class="material-symbols-rounded">check</span>-->
+<!--            </div>-->
+<!--            <div class="d-flex gap-1" *ngIf="!elementEdit">-->
+<!--              <span class="material-symbols-rounded element-add"-->
+<!--                    (click)="thirdCollection.length == 0?openNewCollection(element):editSelectedElement(element)">-->
+<!--                {{element == thirdElement?'edit':'arrow_circle_right'}}-->
+<!--              </span>-->
+<!--              <span class="material-symbols-rounded element-remove"-->
+<!--                    *ngIf="thirdCollection.length > 0"-->
+<!--                    (click)="removeThirdCollection()">-->
+<!--                arrow_circle_left-->
+<!--              </span>-->
+<!--            </div>-->
+
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <div class="d-flex flex-column" *ngIf="thirdCollection.length > 0">-->
+<!--        <div class="element d-flex align-items-center third-element" *ngFor="let element of thirdCollection">-->
+<!--          <p>{{element.name}}</p>-->
+<!--          <span class="material-symbols-rounded element-add" *ngIf="!elementEdit" (click)="openFilterEdit(element)">edit</span>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <div class="d-flex flex-column" *ngIf="thirdCollection.length == 0">-->
+<!--        <div class="empty-element">-->
+<!--          Выберите элемент слева-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--    </div>-->
+
+<!--  </div>-->
+<!--</ng-container>-->
+<div class="justify-content-center flex-column align-items-center mobile-unavailable">
+  <img src="assets/images/mobile-unavailable.png">
+  <p>Контент недоступен</p>
+</div>
+
+
+<ng-container *ngIf="viewCollection">
+  <div class="container pc-available">
+    <p class="title my-4">Редактирование каталогов</p>
+    <div class="d-grid catalogue-edit-container">
+      <div class="d-flex flex-column gap-2">
+        <div class="d-flex gap-1 align-items-center justify-content-between catalogue-edit-element"
+             *ngFor="let element of viewCollection">
+          <p>{{element.name}}</p>
+          <ng-container *ngIf="secondElement.length == 0">
+            <img src="assets/images/edit.svg"
+                 (click)="secondCollection.length == 0?openNewCollection(element):editSelectedElement(element)">
+          </ng-container>
+          <ng-container *ngIf="element == secondElement">
+            <img src="assets/images/close.svg"
+                 (click)="removeAllCollections()">
+          </ng-container>
+        </div>
+      </div>
+      <div class="d-flex flex-column gap-2">
+        <div class="d-flex gap-1 align-items-center justify-content-between catalogue-edit-element"
+             *ngFor="let element of secondCollection">
+          <p>{{element.name}}</p>
+          <ng-container *ngIf="thirdCollection.length == 0">
+            <img src="assets/images/edit.svg"
+                 (click)="thirdCollection.length == 0?openNewCollection(element):editSelectedElement(element)">
+          </ng-container>
+          <ng-container *ngIf="element == thirdElement">
+            <img src="assets/images/close.svg"
+                 (click)="removeThirdCollection()">
+          </ng-container>
+        </div>
+      </div>
+      <div class="d-flex flex-column gap-2">
+        <div class="d-flex gap-1 align-items-center justify-content-between catalogue-edit-element"
+             *ngFor="let element of thirdCollection">
+          <p>{{element.name}}</p>
+          <img src="assets/images/edit.svg" (click)="openFilterEdit(element)">
+        </div>
+      </div>
+    </div>
+<!--    <div class="d-grid" style="grid-template-columns: repeat(3, 1fr); grid-column-gap: 1rem">-->
+
+<!--      <div class="d-flex flex-column">-->
+<!--        <div class="element d-flex align-items-center first-element"-->
+<!--             *ngFor="let element of viewCollection"-->
+<!--             [ngClass]="secondCollection.length > 0?'element-disable':''"-->
+<!--             [class.element-active]="element == secondElement">-->
+
+<!--          <input class="element-input" [value]="element.name" [readonly]="element != elementEdit" #firstElementInput>-->
+
+<!--          <div class="d-flex gap-1" style="margin-left: auto">-->
+
+<!--            <div class="d-flex gap-1" *ngIf="element == elementEdit">-->
+<!--              <span class="material-symbols-rounded" (click)="closeEditSelectedElement(firstElementInput)">undo</span>-->
+<!--              <span class="material-symbols-rounded">check</span>-->
+<!--            </div>-->
+<!--            <div class="d-flex gap-1" *ngIf="!elementEdit">-->
+<!--              <span class="material-symbols-rounded element-add"-->
+<!--                    (click)="secondCollection.length == 0?openNewCollection(element):editSelectedElement(element)">-->
+<!--                {{element == secondElement?'edit':'arrow_circle_right'}}-->
+<!--              </span>-->
+<!--              <span class="material-symbols-rounded element-remove"-->
+<!--                    *ngIf="secondCollection.length > 0"-->
+<!--                    (click)="removeAllCollections()">-->
+<!--                arrow_circle_left-->
+<!--              </span>-->
+<!--            </div>-->
+
+<!--          </div>-->
+
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <div class="d-flex flex-column" *ngIf="secondCollection.length > 0">-->
+<!--        <div class="element d-flex align-items-center second-element"-->
+<!--             *ngFor="let element of secondCollection"-->
+<!--             [ngClass]="thirdCollection.length > 0?'element-disable':''"-->
+<!--             [class.element-active]="element == thirdElement">-->
+<!--          <input class="element-input"-->
+<!--                 [value]="element.name"-->
+<!--                 [readonly]="element != elementEdit" #secondElementInput>-->
+<!--          <div class="d-flex gap-1" style="margin-left: auto">-->
+
+<!--            <div class="d-flex gap-1" *ngIf="element == elementEdit">-->
+<!--              <span class="material-symbols-rounded" (click)="closeEditSelectedElement(secondElementInput)">undo</span>-->
+<!--              <span class="material-symbols-rounded">check</span>-->
+<!--            </div>-->
+<!--            <div class="d-flex gap-1" *ngIf="!elementEdit">-->
+<!--              <span class="material-symbols-rounded element-add"-->
+<!--                    (click)="thirdCollection.length == 0?openNewCollection(element):editSelectedElement(element)">-->
+<!--                {{element == thirdElement?'edit':'arrow_circle_right'}}-->
+<!--              </span>-->
+<!--              <span class="material-symbols-rounded element-remove"-->
+<!--                    *ngIf="thirdCollection.length > 0"-->
+<!--                    (click)="removeThirdCollection()">-->
+<!--                arrow_circle_left-->
+<!--              </span>-->
+<!--            </div>-->
+
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <div class="d-flex flex-column" *ngIf="thirdCollection.length > 0">-->
+<!--        <div class="element d-flex align-items-center third-element" *ngFor="let element of thirdCollection">-->
+<!--          <p>{{element.name}}</p>-->
+<!--          <span class="material-symbols-rounded element-add" *ngIf="!elementEdit" (click)="openFilterEdit(element)">edit</span>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <div class="d-flex flex-column" *ngIf="thirdCollection.length == 0">-->
+<!--        <div class="empty-element">-->
+<!--          Выберите элемент слева-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--    </div>-->
+
+  </div>
+</ng-container>

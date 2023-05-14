@@ -1,0 +1,78 @@
+<ng-container *ngIf="product">
+  <div class="container product__container">
+    <div class="d-flex gap-1 align-items-center product__url">
+      <a>Инструменты</a>
+      <img src="assets/images/arrow_list_next_s.svg">
+      <a>Электроинструменты</a>
+      <img src="assets/images/arrow_list_next_s.svg">
+      <a [routerLink]="['../../catalogue/ushm-bolgarki']">УШМ (болгарки)</a>
+    </div>
+    <p class="product__title">{{product.name}}</p>
+    <div class="d-grid gap-4 product__main_container mb-5">
+      <div class="d-flex flex-column">
+        <div class="d-flex justify-content-center align-items-center product__image mb-3">
+<!--          <img src="assets/images/mobile-unavailable.png">-->
+          <img src="https://img.mvideo.ru/Big/30065731bb.jpg">
+        </div>
+        <div class="d-flex gap-3 justify-content-center align-items-center product__carousel">
+          <a><img src="assets/images/arrow-previous.svg"></a>
+          <a class="product__carousel-element"></a>
+          <a class="product__carousel-element"></a>
+          <a class="product__carousel-element"></a>
+          <a><img src="assets/images/arrow-next.svg"></a>
+        </div>
+      </div>
+      <div class="d-flex flex-column gap-3">
+        <div class="d-flex gap-1 product__inserted">
+          <p>Скидка 15%</p>
+        </div>
+        <div class="d-flex flex-column gap-3">
+          <div class="d-flex flex-column gap-1">
+            <p class="product__specification">Характеристики:</p>
+            <div>
+              <div class="" *ngFor="let item of product.good_data | keyvalue; let i = index">
+                <div class="d-flex justify-content-between" *ngIf="i <= 6">
+                  <p>{{getRusName(item.key)}}</p>
+                  <p>{{getValue(item.value)}}</p>
+                </div>
+                <a *ngIf="i == 7" class="d-flex justify-content-center product__specification-all mt-1">Показать все характеристики</a>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex flex-column gap-1">
+            <p class="product__specification">Информация:</p>
+            <p class="product__about-text">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+              Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+            <a class="product__specification-all">Читать далее</a>
+          </div>
+        </div>
+      </div>
+      <div class="product__price_container">
+        <div class="product__price d-flex flex-column justify-content-between">
+          <p>{{product.price.toLocaleString('ru', { maximumFractionDigits: 0 })}} ₽</p>
+          <a class="product__add_to_cart" (click)="addToCart()">Добавить в корзину</a>
+        </div>
+      </div>
+    </div>
+
+    <p class="product__title mb-3">О товаре</p>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+      Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </p>
+
+    <p class="product__title mb-3">Характеристики</p>
+    <div *ngFor="let item of product.good_data | keyvalue">
+      <div class="d-flex justify-content-between">
+        <p>{{getRusName(item.key)}}</p>
+        <p>{{getValue(item.value)}}</p>
+      </div>
+    </div>
+  </div>
+</ng-container>

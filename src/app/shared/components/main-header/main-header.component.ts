@@ -22,6 +22,7 @@ export class MainHeaderComponent implements OnInit, OnDestroy {
   {}
 
   ngOnInit(): void {
+    console.log("here header");
     this.subscriptions.add(
       this.storageService.region$.subscribe((region) => {
         this.region = region;

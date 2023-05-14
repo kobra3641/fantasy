@@ -10,7 +10,7 @@
   grid-area: logo;
 }
 .navbar {
-  padding: 1rem 1rem;
+  padding: 0.5rem 1rem;
   display: grid;
   grid-template-areas: 'logo . regions . shops . catalog . searchbar . auth . basket';
   grid-template-columns: auto 40px auto 24px auto 40px auto 24px 1fr 40px auto 24px auto;
